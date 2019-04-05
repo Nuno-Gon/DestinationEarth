@@ -38,7 +38,7 @@ public class TextUserInterface {
             System.out.println("  --> Menu Principal <--");
             System.out.println("\t0 - Sair");
             System.out.println("\t1 - Jogar");
-            
+            System.out.print("\t>> ");
             char c = ' ';
             sc = new Scanner(System.in);
             c = sc.next().charAt(0);
