@@ -11,6 +11,7 @@ public class TextUserInterface {
         
     public TextUserInterface(Game game){
         g = game; 
+        sc = new Scanner(System.in);
     }
 	
     public void run(){
@@ -60,7 +61,6 @@ public class TextUserInterface {
             System.out.println("\t3 - Carregar");
             System.out.print("\t>> ");
             char c = ' ';
-            sc = new Scanner(System.in);
             c = sc.next().charAt(0);
             
             if((c == '0')) {    //Opcao para sair do programa
