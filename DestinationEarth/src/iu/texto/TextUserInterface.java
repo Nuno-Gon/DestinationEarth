@@ -2,7 +2,8 @@ package iu.texto;
 
 import logicaJogo.*;
 import java.util.*;
-import logicaEstados.AwaitBeginning;
+import logicaEstados.*;
+import logicaJogo.crewMembers.*;
 
 public class TextUserInterface {
 
@@ -19,17 +20,6 @@ public class TextUserInterface {
         while (!sair) {
             menuPrincipal();
         }
-//  Codigo da funcao corre() > exercicio do 3 em linha:
-//        while (!sair) {
-//            IEstado estado = jogo.getEstado();
-//            if (estado instanceof AguardaInicio) {
-//                iuAguardaInicio();
-//            } else if (estado instanceof AguardaColocacao) {
-//                iuAguardaColocacao();
-//            } else if (estado instanceof AguardaDevolucao) {
-//                iuAguardaDevolucao();
-//            }
-//        }
     }
 
     public void menuPrincipal() {
@@ -87,12 +77,168 @@ public class TextUserInterface {
     public void jogar() {
         while (true) {
             if (g.getState() instanceof AwaitBeginning) {
-                InputAwaitBeginning();
+                iuAwaitBeginning();
+            } else if (g.getState() instanceof AwaitCrewMembersSelection) {
+                iuAwaitCrewMembersSelection();
+            } else if (g.getState() instanceof AwaitThirdTokenPlacementCM1) {
+                iuAwaitThirdTokenPlacementCM1();
+            } else if (g.getState() instanceof AwaitThirdTokenPlacementCM2) {
+                iuAwaitThirdTokenPlacementCM2();
+                return;
             }
         }
     }
 
-    public void InputAwaitBeginning() {
+    public void iuAwaitBeginning() {
+        System.out.println();
+        System.out.println("Journey Tracker: " + Arrays.toString(g.getGameData().getJourneyTracker()));
+        System.out.println("Turn: " + g.getGameData().getTurn());
+        System.out.println("Hull: " + g.getGameData().getHullTracker());
+        System.out.println("Health: " + g.getGameData().getHealthTracker());
+        System.out.println("Inspiration Points: " + g.getGameData().getInspirationPoints());
         g.resolveStart();
+    }
+
+    private void iuAwaitCrewMembersSelection() {
+        int i = 1;
+        if (g.getGameData().getCrewMemberFirst() != null) {
+            i += 1;
+        }
+        System.out.println();
+        System.out.println("  --> Select Crew Member #" + i + " <--");
+        System.out.println("\t0 - Random");
+        System.out.println("\t1 - Doctor");
+        System.out.println("\t2 - Captain");
+        System.out.println("\t3 - Engineer");
+        System.out.println("\t4 - Commander");
+        System.out.println("\t5 - Red Shirt");
+        System.out.println("\t6 - Moral Officer");
+        System.out.println("\t7 - Comm's Officer");
+        System.out.println("\t8 - Science Officer");
+        System.out.println("\t9 - Transporter Chief");
+        System.out.print("\t>>");
+        int x = sc.nextInt();
+        //show special and confirm selection
+        System.out.println();
+        System.out.print("Special:");
+        showSpecial(x);
+        System.out.println("Confirm Crew Member (Y/N)");
+        System.out.print(">>");
+        char c = sc.next().charAt(0);
+        c = Character.toUpperCase(c);
+        if (c == 'Y') {
+            g.selectCrewMember(x);
+        } else {
+            iuAwaitCrewMembersSelection();
+        }
+    }
+
+    private void showSpecial(int x) {
+        CrewMember k;
+        switch (x) {
+            case 1:
+                k = new CM_Doctor();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 2:
+                k = new CM_Captain();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 3:
+                k = new CM_Engineer();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 4:
+                k = new CM_Commander();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 5:
+                k = new CM_RedShirt();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 6:
+                k = new CM_MoralOfficer();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 7:
+                k = new CM_CommsOfficer();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 8:
+                k = new CM_ScienceOfficer();
+                System.out.println(k.getInfoSpecial());
+                break;
+            case 9:
+                k = new CM_TransporterChief();
+                System.out.println(k.getInfoSpecial());
+                break;
+        }
+    }
+
+    private void iuAwaitThirdTokenPlacementCM1() {
+        System.out.println();
+        System.out.println("  --> Place Crew Member #1 <--");
+        System.out.println("\t1 - Select room");
+        System.out.println("\t2 - Choose random");
+        System.out.print("\t>>");
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                showRoomList();
+                System.out.print("\t>>");
+                x = sc.nextInt();
+                g.thirdTokenPlacementCM1(x);
+                break;
+            case 2:
+                System.out.println("\nYou rolled 2D6 for Crew Member #1 placement!");
+                sc.hasNextLine();
+                g.getGameData().setCurrentDice(g.getGameData().rollDice() + g.getGameData().rollDice());
+                x = g.getGameData().getCurrentDice();
+                g.thirdTokenPlacementCM1(x);
+                System.out.println("Dice value: " + g.getGameData().getCurrentDice());
+                System.out.println("Room placed in: " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
+                break;
+            default:
+                iuAwaitThirdTokenPlacementCM1();
+                break;
+        }
+    }
+
+    private void showRoomList() {
+        int i = 1;
+        System.out.println("\n  --> Room List <--");
+        for (Room roomList : g.getGameData().getShipRoomList()) {
+            System.out.println("\t" + i + " - " + roomList.getName());
+            i++;
+        }
+    }
+
+    private void iuAwaitThirdTokenPlacementCM2() {
+        System.out.println();
+        System.out.println("  --> Place Crew Member #2 <--");
+        System.out.println("\t1 - Select room");
+        System.out.println("\t2 - Choose random");
+        System.out.print("\t>>");
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                showRoomList();
+                System.out.print("\t>>");
+                x = sc.nextInt();
+                g.thirdTokenPlacementCM2(x);
+                break;
+            case 2:
+                System.out.println("\nYou rolled 2D6 for Crew Member #2 placement!");
+                sc.nextLine();
+                g.getGameData().setCurrentDice(g.getGameData().rollDice() + g.getGameData().rollDice());
+                x = g.getGameData().getCurrentDice();
+                g.thirdTokenPlacementCM2(x);
+                System.out.println("Dice value: " + g.getGameData().getCurrentDice());
+                System.out.println("Room placed in: " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
+                break;
+            default:
+                iuAwaitThirdTokenPlacementCM2();
+                break;
+        }
     }
 }

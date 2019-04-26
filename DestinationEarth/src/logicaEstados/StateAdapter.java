@@ -14,4 +14,19 @@ public class StateAdapter implements IStates {
     public IStates start() {
         return this;
     }
+
+    @Override
+    public IStates selectCM(int x) {
+        return this;
+    }
+
+    @Override
+    public IStates thirdTokenCM1(int x) {
+        return this;
+    }
+
+    @Override
+    public IStates thirdTokenCM2(int x) {
+        return this;
+    }
 }

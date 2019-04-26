@@ -10,6 +10,6 @@ public class AwaitBeginning extends StateAdapter {
 
     @Override
     public IStates start() {
-        return new AwaitBeginning(gameData); //Estado seguinte não beginning
+        return new AwaitCrewMembersSelection(gameData);
     }
 }

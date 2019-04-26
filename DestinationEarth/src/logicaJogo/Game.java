@@ -10,7 +10,7 @@ public class Game {
 
     public Game() {
         gameData = new GameData(); //Novo jogo
-        state = new AwaitBeginning(gameData);
+        state = new AwaitBeginning(gameData); //Estado inicial
     }
 
     public GameData getGameData() {
@@ -29,9 +29,25 @@ public class Game {
         this.state = state;
     }
 
-    //--------------Estados--------------
+    //--------------Estados + Eventos--------------
+    //iu
     //AwaitBeginning
     public void resolveStart() {
         setState(getState().start());
+    }
+
+    //AwaitCrewMembersSelection
+    public void selectCrewMember(int x) {
+        setState(getState().selectCM(x));
+    }
+
+    //AwaitThirdTokenPlacementCM1
+    public void thirdTokenPlacementCM1(int x) {
+        setState(getState().thirdTokenCM1(x));
+    }
+
+    //AwaitThirdTokenPlacementCM2
+    public void thirdTokenPlacementCM2(int x) {
+        setState(getState().thirdTokenCM2(x));
     }
 }
