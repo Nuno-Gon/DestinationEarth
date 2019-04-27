@@ -2,6 +2,7 @@ package logicaJogo;
 
 import java.util.*;
 import logicaEstados.*;
+import logicaJogo.crewMembers.*;
 
 public class Game {
 
@@ -65,17 +66,30 @@ public class Game {
         setState(getState().attack());
     }
 
-    public void sealRoom() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void noAP() {
         setState(getState().noAP());
+    }
+
+    public void trap() {
+        setState(getState().trap());
+    }
+
+    public void seal() {
+        setState(getState().seal());
     }
 
     //AwaitMove
     public void moveCM(Room r, int cm) {
         setState(getState().moveCM(r, cm));
+    }
+
+    //AwaitDieRoll
+    public void attackAlien(CrewMember cm, int x) {
+        setState(getState().attackAlien(cm, x));
+    }
+
+    public void noAlien() {
+        setState(getState().noAlien());
     }
 
 }

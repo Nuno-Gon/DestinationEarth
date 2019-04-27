@@ -1,6 +1,7 @@
 package logicaEstados;
 
 import logicaJogo.*;
+import logicaJogo.crewMembers.*;
 
 public interface IStates {
 
@@ -30,7 +31,16 @@ public interface IStates {
 
     public IStates noAP();
 
+    public IStates seal();
+
+    public IStates trap();
+
     //AwaitMove
     public IStates moveCM(Room r, int cm);
+
+    //AwaitDieRoll
+    public IStates attackAlien(CrewMember cm, int x);
+
+    public IStates noAlien();
 
 }

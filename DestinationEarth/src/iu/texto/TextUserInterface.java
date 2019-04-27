@@ -42,7 +42,7 @@ public class TextUserInterface {
         System.out.println("\t\t   ===== Prod PaRiS & Psyk0 =====\n\n");
 
         while (true) {
-            System.out.println("  --> Menu Principal <--");
+            System.out.println("\t  --> Menu Principal <--");
             System.out.println("\t1 - Jogar");
             System.out.println("\t2 - Guardar");
             System.out.println("\t3 - Carregar");
@@ -99,7 +99,6 @@ public class TextUserInterface {
             } else if (g.getState() instanceof GameOver) {
                 iuGameOver();
             }
-
         }
     }
 
@@ -125,7 +124,7 @@ public class TextUserInterface {
             i += 1;
         }
         System.out.println();
-        System.out.println("  --> Select Crew Member #" + i + " <--");
+        System.out.println("\t  --> Select Crew Member #" + i + " <--");
         System.out.println("\t0 - Random");
         System.out.println("\t1 - Doctor");
         System.out.println("\t2 - Captain");
@@ -198,7 +197,7 @@ public class TextUserInterface {
 
     private void iuAwaitThirdTokenPlacementCM1() {
         System.out.println();
-        System.out.println("  --> Place Crew Member #1 <--");
+        System.out.println("\t  --> Place Crew Member #1 <--");
         System.out.println("\t1 - Select room");
         System.out.println("\t2 - Choose random");
         System.out.print("\t>>");
@@ -234,7 +233,7 @@ public class TextUserInterface {
 
     private void iuAwaitThirdTokenPlacementCM2() {
         System.out.println();
-        System.out.println("  --> Place Crew Member #2 <--");
+        System.out.println("\t  --> Place Crew Member #2 <--");
         System.out.println("\t1 - Select room");
         System.out.println("\t2 - Choose random");
         System.out.print("\t>>");
@@ -260,7 +259,6 @@ public class TextUserInterface {
     }
 
     private void iuAwaitAlienSpawn() {
-        infoGame();
         g.alienPlacment();
         showAliens();
     }
@@ -273,12 +271,15 @@ public class TextUserInterface {
     }
 
     private void iuAwaitCrewPhase() {
+        infoGame();
         int ap = g.getGameData().getActionPoints();
+        String cm1 = g.getGameData().getCrewMemberFirst().getName();
+        String cm2 = g.getGameData().getCrewMemberSecond().getName();
         if (ap == 0) {
             g.noAP();
         }
         System.out.println();
-        System.out.println("  --> Crew Phase <--");
+        System.out.println("\t  --> Crew Phase <--");
         System.out.println("\tEach action uses 1 AP.");
         System.out.println("\tYou have: " + ap + " AP");
         System.out.println("\t1 - Move");
@@ -298,15 +299,17 @@ public class TextUserInterface {
                 g.attack();
                 break;
             case 3:
+                //if(cm1.equals("Doctor") || cm1.equals("")) fazer dentro do heal() na class CrewPhase se tiver médico
                 break;
             case 4:
                 break;
             case 5:
+                g.trap();
                 break;
             case 6:
                 break;
             case 7:
-                g.sealRoom();
+                g.seal();
                 break;
             default:
                 break;
@@ -320,13 +323,13 @@ public class TextUserInterface {
         int na_cm2 = g.getGameData().getCrewMemberSecond().getCurrentRoom().getAliens();
 
         System.out.println();
-        System.out.println("  --> Dice Attack <--");
+        System.out.println("\t  --> Dice Attack <--");
         System.out.println("Aliens in the same room as the " + cm1);
         System.out.println(">>" + na_cm1);
         System.out.println("Aliens in the same room as the " + cm2);
         System.out.println(">>" + na_cm2);
         System.out.println();
-        System.out.println("  --> Who's Attacking <--");
+        System.out.println("\t  --> Who's Attacking <--");
         if (0 < na_cm1) {
             System.out.println("\t1 - " + cm1);
         } else {
@@ -337,43 +340,47 @@ public class TextUserInterface {
         } else {
             System.out.println("No alien in " + cm2 + "'s room.");
         }
-        if ((na_cm1 + na_cm2) == 0) {
-            iuAwaitBeginning(); //No aliens, get back to Crew Phase
-        }
-        System.out.print("\t>>");
-        int a = sc.nextInt();
-        switch (a) {
-            case 1:
-                break;
-            case 2:
-                break;
-            default:
-                break;
-        }
 
-        System.out.println();
-        System.out.println("  --> Dice Attack <--");
-        System.out.println("\t1 - Roll dice");
-        System.out.println("\t2 - Choose number");
-        System.out.print("\t>>");
-        int x = sc.nextInt();
-        switch (x) {
-            case 1:
-                break;
-            case 2:
-                System.out.println("Number:");
-                System.out.print("\t>>");
+        if ((na_cm1 + na_cm2) == 0) {
+            g.noAlien(); //No aliens in the same rooms, get back to Crew Phase
+        } else {
+            System.out.print("\t>>");
+            int a = sc.nextInt();
+
+            System.out.println();
+            System.out.println("\t  --> Dice Attack <--");
+            System.out.println("\t1 - Roll attack dice");
+            System.out.println("\t2 - Choose number (debug)");
+            System.out.print("\t>>");
+            int x = sc.nextInt();
+            if (x == 2) {
+                System.out.print("Number  >>");
                 x = sc.nextInt();
-                break;
-            default:
-                break;
+            } else {
+                x = 420;
+            }
+            //a->Crew Member que vai atacar, x->se for 420 é random senao é o valor que foi introduzido
+            switch (a) {
+                case 1:
+                    g.attackAlien(g.getGameData().getCrewMemberFirst(), x);
+                    break;
+                case 2:
+                    g.attackAlien(g.getGameData().getCrewMemberSecond(), x);
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("Dice value: " + g.getGameData().getCurrentDice());
+            if (g.getGameData().getCurrentDice() >= 5) {
+                System.out.println("Matou 1 Alien!");
+            }
         }
     }
 
     private void iuAwaitMove() {
         int i = 1, x = 0;
         System.out.println();
-        System.out.println("  --> Movement <--");
+        System.out.println("\t  --> Movement <--");
         System.out.println("\t1 - " + g.getGameData().getCrewMemberFirst().getName());
         System.out.println("\t2 - " + g.getGameData().getCrewMemberSecond().getName());
         System.out.print("\t>>");
@@ -399,7 +406,7 @@ public class TextUserInterface {
 
     private Room showConnectedRooms(Room r) {
         System.out.println();
-        System.out.println(" --> Connected Rooms <--");
+        System.out.println("\t --> Connected Rooms <--");
         System.out.println("Current: " + r.getName());
         r.getExits().keySet().forEach((Integer i) -> {
             System.out.println("\tRoom: " + i);

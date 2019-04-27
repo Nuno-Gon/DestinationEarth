@@ -1,6 +1,7 @@
 package logicaEstados;
 
 import logicaJogo.*;
+import logicaJogo.crewMembers.*;
 
 public class StateAdapter implements IStates {
 
@@ -57,6 +58,26 @@ public class StateAdapter implements IStates {
 
     @Override
     public IStates noAP() {
+        return this;
+    }
+
+    @Override
+    public IStates seal() {
+        return this;
+    }
+
+    @Override
+    public IStates trap() {
+        return this;
+    }
+
+    @Override
+    public IStates attackAlien(CrewMember cm, int x) {
+        return this;
+    }
+
+    @Override
+    public IStates noAlien() {
         return this;
     }
 }
