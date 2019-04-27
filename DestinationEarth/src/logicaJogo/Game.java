@@ -92,4 +92,12 @@ public class Game {
         setState(getState().noAlien());
     }
 
+    public void gameOver() {
+        setState(getState().gameOver());
+    }
+
+    public void replay() {
+        setState(getState().replay());
+    }
+
 }

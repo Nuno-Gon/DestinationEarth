@@ -35,6 +35,8 @@ public interface IStates {
 
     public IStates trap();
 
+    public IStates gameOver();
+
     //AwaitMove
     public IStates moveCM(Room r, int cm);
 
@@ -43,4 +45,6 @@ public interface IStates {
 
     public IStates noAlien();
 
+    //GameOver
+    public IStates replay();
 }

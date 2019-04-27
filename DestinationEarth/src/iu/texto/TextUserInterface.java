@@ -275,7 +275,11 @@ public class TextUserInterface {
         int ap = g.getGameData().getActionPoints();
         String cm1 = g.getGameData().getCrewMemberFirst().getName();
         String cm2 = g.getGameData().getCrewMemberSecond().getName();
+        g.getGameData().setHullTracker(0);
         if (ap == 0) {
+            if (g.getGameData().getHealthTracker() == 0 || g.getGameData().getHullTracker() == 0) {
+                g.gameOver();
+            }
             g.noAP();
         }
         System.out.println();
@@ -423,6 +427,7 @@ public class TextUserInterface {
 
     private void iuGameOver() {
         System.out.println("\t--> GAME OVER! <--");
+        g.replay();
         //say why
         //send to beginning implement transition
     }

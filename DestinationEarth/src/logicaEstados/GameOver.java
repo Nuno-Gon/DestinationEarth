@@ -9,8 +9,7 @@ public class GameOver extends StateAdapter {
     }
 
     @Override
-    public IStates start() {
-        //replay
+    public IStates replay() {
         return new AwaitBeginning(gameData);
     }
 }

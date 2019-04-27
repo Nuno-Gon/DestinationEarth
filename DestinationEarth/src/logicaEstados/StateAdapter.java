@@ -80,4 +80,14 @@ public class StateAdapter implements IStates {
     public IStates noAlien() {
         return this;
     }
+
+    @Override
+    public IStates gameOver() {
+        return this;
+    }
+
+    @Override
+    public IStates replay() {
+        return this;
+    }
 }

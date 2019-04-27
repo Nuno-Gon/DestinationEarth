@@ -34,4 +34,8 @@ public class AwaitCrewPhase extends StateAdapter {
         return new AwaitAlienPhase(gameData);
     }
 
+    @Override
+    public IStates gameOver() {
+        return new GameOver(gameData);
+    }
 }
