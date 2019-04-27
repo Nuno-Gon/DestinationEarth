@@ -11,6 +11,7 @@ public class AwaitAlienSpawn extends StateAdapter {
     @Override
     public IStates alienPlacment() {
         alienSpawn();
+        gameData.setActionPoints(5);
         return new AwaitCrewPhase(gameData);
     }
 

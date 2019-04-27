@@ -55,4 +55,21 @@ public class Game {
     public void alienPlacment() {
         setState(getState().alienPlacment());
     }
+
+    //AwaitCrewPhase
+    public void move() {
+        setState(getState().move());
+    }
+
+    public void attack() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void sealRoom() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void moveCM(Room r, int cm) {
+        setState(getState().moveCM(r, cm));
+    }
 }

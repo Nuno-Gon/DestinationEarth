@@ -4,8 +4,8 @@ import logicaJogo.crewMembers.*;
 import java.util.*;
 
 public class GameData { //Dados do jogo
-    ////-----------JOURNEY TRACKER-----------
 
+    ////-----------JOURNEY TRACKER-----------
     private String[] journeyTracker;
     private int turn;
 
@@ -23,6 +23,8 @@ public class GameData { //Dados do jogo
     private CrewMember crewMemberFirst, crewMemberSecond;
     //Current Dice
     private int currentDice;
+    //Action Points
+    private int actionPoints;
 
     public GameData() {
         this.journeyTracker = new String[]{"S", "2A", "3A", "4A", "5A*", "R", "4A", "5A", "6A*", "R", "6A", "7A*", "R", "8A", "E"};
@@ -32,6 +34,7 @@ public class GameData { //Dados do jogo
         this.inspirationPoints = 0;
         this.crewMemberFirst = null;
         this.crewMemberSecond = null;
+        this.actionPoints = 0;
         createRooms();
     }
 
@@ -176,5 +179,13 @@ public class GameData { //Dados do jogo
 
     public Room getIndexShipRoomList(int x) {
         return this.shipRoomList.get(x);
+    }
+
+    public int getActionPoints() {
+        return actionPoints;
+    }
+
+    public void setActionPoints(int actionPoints) {
+        this.actionPoints = actionPoints;
     }
 }

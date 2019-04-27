@@ -87,11 +87,11 @@ public class TextUserInterface {
             } else if (g.getState() instanceof AwaitAlienSpawn) {
                 iuAwaitAlienSpawn();
             } else if (g.getState() instanceof AwaitCrewPhase) {
-                //iuAwaitCrewPhase();
-                return;
+                iuAwaitCrewPhase();
+            } else if (g.getState() instanceof AwaitMove) {
+                iuAwaitMove();
             } else if (g.getState() instanceof AwaitDieRoll) {
-                //iuAwaitDieRoll();
-                return;
+                iuAwaitDieRoll();
             } else if (g.getState() instanceof AwaitRestPhase) {
                 return;
             }
@@ -132,6 +132,7 @@ public class TextUserInterface {
         System.out.println("\t8 - Science Officer");
         System.out.println("\t9 - Transporter Chief");
         System.out.print("\t>>");
+
         int x = sc.nextInt();
         //show special and confirm selection
         System.out.println();
@@ -245,7 +246,7 @@ public class TextUserInterface {
                 x = 420;
                 g.thirdTokenPlacementCM2(x);
                 System.out.println("Dice value: " + g.getGameData().getCurrentDice());
-                System.out.println("Room placed in: " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
+                System.out.println("Room placed in: " + g.getGameData().getCrewMemberSecond().getCurrentRoom().getName());
                 break;
             default:
                 iuAwaitThirdTokenPlacementCM2();
@@ -266,11 +267,97 @@ public class TextUserInterface {
         });
     }
 
-    private void iuAwaitDieRoll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void iuAwaitCrewPhase() {
+        System.out.println();
+        System.out.println("  --> Crew Phase <--");
+        System.out.println("\tEach action uses 1 AP.");
+        System.out.println("\tYou have: " + g.getGameData().getActionPoints() + " AP");
+        System.out.println("\t1 - Move");
+        System.out.println("\t2 - Attack");
+        System.out.println("\t3 - Heal one Health (Doctor Only)");
+        System.out.println("\t4 - Fix one Hull [Engineer Only]");
+        System.out.println("\t5 - Setting Trap");
+        System.out.println("\t6 - Detonate Particle Disperser");
+        System.out.println("\t7 - Seal Room");
+        System.out.print("\t>>");
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                g.move();
+                break;
+            case 2:
+                g.attack();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                g.sealRoom();
+                break;
+            default:
+                break;
+        }
     }
 
-    private void iuAwaitCrewPhase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void iuAwaitDieRoll() {
+        System.out.println();
+        System.out.println("  --> Dice <--");
+        System.out.println("\t1 - Roll die");
+        System.out.println("\t2 - Choose number");
+        System.out.print("\t>>");
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                iuAwaitDieRoll();
+        }
+    }
+
+    private void iuAwaitMove() {
+        int i = 1, x = 0;
+        System.out.println();
+        System.out.println("  --> Movement <--");
+        System.out.println("\t1 - " + g.getGameData().getCrewMemberFirst().getName());
+        System.out.println("\t2 - " + g.getGameData().getCrewMemberSecond().getName());
+        System.out.print("\t>>");
+        int cm = sc.nextInt();
+        Room r;
+        switch (cm) {
+            case 1:
+                r = g.getGameData().getCrewMemberFirst().getCurrentRoom();
+                r = showConnectedRooms(r);
+                g.moveCM(r, 1);
+                break;
+            case 2:
+                r = g.getGameData().getCrewMemberSecond().getCurrentRoom();
+                r = showConnectedRooms(r);
+                g.moveCM(r, 2);
+                break;
+            default:
+                System.out.println("Not an option.");
+                iuAwaitMove();
+                break;
+        }
+    }
+
+    private Room showConnectedRooms(Room r) {
+        System.out.println();
+        System.out.println(" --> Connected Rooms <--");
+        System.out.println("Current: " + r.getName());
+        r.getExits().keySet().forEach((Integer i) -> {
+            System.out.println("\tRoom: " + i);
+        });
+        System.out.print("Choose a room >>");
+        int x = sc.nextInt();
+
+        return r.getExits().get(x);
     }
 }

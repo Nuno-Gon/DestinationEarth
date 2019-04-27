@@ -1,6 +1,6 @@
 package logicaEstados;
 
-import logicaJogo.GameData;
+import logicaJogo.*;
 
 public class StateAdapter implements IStates {
 
@@ -37,6 +37,21 @@ public class StateAdapter implements IStates {
 
     @Override
     public IStates alienPlacment() {
+        return this;
+    }
+
+    @Override
+    public IStates attack() {
+        return this;
+    }
+
+    @Override
+    public IStates move() {
+        return this;
+    }
+
+    @Override
+    public IStates moveCM(Room r, int cm) {
         return this;
     }
 }

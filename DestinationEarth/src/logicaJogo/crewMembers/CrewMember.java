@@ -4,6 +4,7 @@ import logicaJogo.*;
 
 public abstract class CrewMember {
 
+    protected String name;
     private int movement;
     private int attack;
     protected String infoSpecial;
@@ -46,5 +47,13 @@ public abstract class CrewMember {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -1,5 +1,7 @@
 package logicaEstados;
 
+import logicaJogo.*;
+
 public interface IStates {
 
     // AwaitBeginning
@@ -20,4 +22,12 @@ public interface IStates {
     //AwaitScanningPhase
     //AwaitAlienSpawn
     public IStates alienPlacment();
+
+    //AwaitCrewPhase
+    public IStates attack();
+
+    public IStates move();
+
+    //AwaitMove
+    public IStates moveCM(Room r, int cm);
 }

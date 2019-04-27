@@ -14,7 +14,7 @@ public class AwaitThirdTokenPlacementCM2 extends StateAdapter {
             gameData.setCurrentDice(gameData.rollDice() + gameData.rollDice());
             x = gameData.getCurrentDice();
         }
-        gameData.getCrewMemberFirst().setCurrentRoom(selectRoom(x));
+        gameData.getCrewMemberSecond().setCurrentRoom(selectRoom(x));
         gameData.setTurn(+1);
         if (gameData.getJourneyTrackerIndex(gameData.getTurn()).equals("R")) {
             return new AwaitRestPhase(gameData);

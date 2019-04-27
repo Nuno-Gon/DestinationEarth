@@ -9,7 +9,16 @@ public class AwaitCrewPhase extends StateAdapter {
     }
 
     @Override
-    public IStates start() {
-        return new AwaitCrewMembersSelection(gameData);
+    public IStates attack() {
+
+        //gameData.setActionPoints(0);
+        return new AwaitDieRoll(gameData);
     }
+
+    @Override
+    public IStates move() {
+        //gameData.setActionPoints(0);
+        return new AwaitMove(gameData);
+    }
+
 }
