@@ -15,12 +15,16 @@ public class AwaitAlienSpawn extends StateAdapter {
     }
 
     public void alienSpawn() {
-        //gameData.setCurrentDice(gameData.rollDice() + gameData.rollDice());
+        //Get string(turn) from the Journey Tracker index
+        //Get the first 0,1 Char and transform in Int (num aliens to spawn)
         String ss = gameData.getJourneyTrackerIndex(gameData.getTurn());
         String k = ss.substring(0, 1);
-        int i = Integer.parseInt(k);
-        System.out.println("kek: " + i);
+        int a = Integer.parseInt(k);
 
-        //for para rodar o "k" vezes e spawnar os aliens
+        //roll 2D6 for each alien and place them in the room
+        for (int i = 0; i < a; i++) {
+            int die = gameData.rollDice() + gameData.rollDice();
+            gameData.getIndexShipRoomList(die).setAliens(+1);
+        }
     }
 }

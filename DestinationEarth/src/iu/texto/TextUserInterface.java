@@ -87,9 +87,11 @@ public class TextUserInterface {
             } else if (g.getState() instanceof AwaitAlienSpawn) {
                 iuAwaitAlienSpawn();
             } else if (g.getState() instanceof AwaitCrewPhase) {
-                iuAwaitCrewPhase();
+                //iuAwaitCrewPhase();
+                return;
             } else if (g.getState() instanceof AwaitDieRoll) {
-                iuAwaitDieRoll();
+                //iuAwaitDieRoll();
+                return;
             } else if (g.getState() instanceof AwaitRestPhase) {
                 return;
             }
@@ -254,7 +256,14 @@ public class TextUserInterface {
     private void iuAwaitAlienSpawn() {
         infoGame();
         g.alienPlacment();
-        infoGame();
+        showAliens();
+    }
+
+    private void showAliens() {
+        System.out.println("\n  --> Aliens Locations <--");
+        g.getGameData().getShipRoomList().stream().filter((roomList) -> (roomList.getAliens() > 0)).forEachOrdered((roomList) -> {
+            System.out.println("\t" + roomList.getName() + " -> " + roomList.getAliens());
+        });
     }
 
     private void iuAwaitDieRoll() {
