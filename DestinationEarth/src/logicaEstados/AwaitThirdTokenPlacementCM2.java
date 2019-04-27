@@ -10,8 +10,17 @@ public class AwaitThirdTokenPlacementCM2 extends StateAdapter {
 
     @Override
     public IStates thirdTokenCM2(int x) {
+        if (x == 420) { //If random, roll 2 dice and set value on x
+            gameData.setCurrentDice(gameData.rollDice() + gameData.rollDice());
+            x = gameData.getCurrentDice();
+        }
         gameData.getCrewMemberFirst().setCurrentRoom(selectRoom(x));
-        return new AwaitBeginning(gameData);
+        gameData.setTurn(+1);
+        if (gameData.getJourneyTrackerIndex(gameData.getTurn()).equals("R")) {
+            return new AwaitRestPhase(gameData);
+        } else {
+            return new AwaitAlienSpawn(gameData);
+        }
     }
 
     public Room selectRoom(int x) {

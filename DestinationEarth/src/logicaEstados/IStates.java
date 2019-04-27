@@ -3,7 +3,7 @@ package logicaEstados;
 public interface IStates {
 
     // AwaitBeginning
-    public IStates start();
+    public IStates start(); //Configured in GameData constructor
 
     //AwaitCrewMembersSelection
     public IStates selectCM(int x);
@@ -13,4 +13,11 @@ public interface IStates {
 
     //AwaitThirdTokenPlacementCM2
     public IStates thirdTokenCM2(int x);
+
+    //MoveJourneyTracker
+    public IStates moveJourneyTacker();
+
+    //AwaitScanningPhase
+    //AwaitAlienSpawn
+    public IStates alienPlacment();
 }

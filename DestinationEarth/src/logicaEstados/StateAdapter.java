@@ -29,4 +29,14 @@ public class StateAdapter implements IStates {
     public IStates thirdTokenCM2(int x) {
         return this;
     }
+
+    @Override
+    public IStates moveJourneyTacker() {
+        return this;
+    }
+
+    @Override
+    public IStates alienPlacment() {
+        return this;
+    }
 }

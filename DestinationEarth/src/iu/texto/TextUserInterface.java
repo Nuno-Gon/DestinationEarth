@@ -84,19 +84,32 @@ public class TextUserInterface {
                 iuAwaitThirdTokenPlacementCM1();
             } else if (g.getState() instanceof AwaitThirdTokenPlacementCM2) {
                 iuAwaitThirdTokenPlacementCM2();
+            } else if (g.getState() instanceof AwaitAlienSpawn) {
+                iuAwaitAlienSpawn();
+            } else if (g.getState() instanceof AwaitCrewPhase) {
+                iuAwaitCrewPhase();
+            } else if (g.getState() instanceof AwaitDieRoll) {
+                iuAwaitDieRoll();
+            } else if (g.getState() instanceof AwaitRestPhase) {
                 return;
             }
         }
     }
 
     public void iuAwaitBeginning() {
+        infoGame();
+        g.resolveStart();
+    }
+
+    public void infoGame() {
         System.out.println();
         System.out.println("Journey Tracker: " + Arrays.toString(g.getGameData().getJourneyTracker()));
+        System.out.println(">> " + g.getGameData().getJourneyTrackerIndex(g.getGameData().getTurn()));
         System.out.println("Turn: " + g.getGameData().getTurn());
         System.out.println("Hull: " + g.getGameData().getHullTracker());
         System.out.println("Health: " + g.getGameData().getHealthTracker());
         System.out.println("Inspiration Points: " + g.getGameData().getInspirationPoints());
-        g.resolveStart();
+
     }
 
     private void iuAwaitCrewMembersSelection() {
@@ -191,9 +204,7 @@ public class TextUserInterface {
                 break;
             case 2:
                 System.out.println("\nYou rolled 2D6 for Crew Member #1 placement!");
-                sc.hasNextLine();
-                g.getGameData().setCurrentDice(g.getGameData().rollDice() + g.getGameData().rollDice());
-                x = g.getGameData().getCurrentDice();
+                x = 420;
                 g.thirdTokenPlacementCM1(x);
                 System.out.println("Dice value: " + g.getGameData().getCurrentDice());
                 System.out.println("Room placed in: " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
@@ -229,9 +240,7 @@ public class TextUserInterface {
                 break;
             case 2:
                 System.out.println("\nYou rolled 2D6 for Crew Member #2 placement!");
-                sc.nextLine();
-                g.getGameData().setCurrentDice(g.getGameData().rollDice() + g.getGameData().rollDice());
-                x = g.getGameData().getCurrentDice();
+                x = 420;
                 g.thirdTokenPlacementCM2(x);
                 System.out.println("Dice value: " + g.getGameData().getCurrentDice());
                 System.out.println("Room placed in: " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
@@ -240,5 +249,19 @@ public class TextUserInterface {
                 iuAwaitThirdTokenPlacementCM2();
                 break;
         }
+    }
+
+    private void iuAwaitAlienSpawn() {
+        infoGame();
+        g.alienPlacment();
+        infoGame();
+    }
+
+    private void iuAwaitDieRoll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void iuAwaitCrewPhase() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

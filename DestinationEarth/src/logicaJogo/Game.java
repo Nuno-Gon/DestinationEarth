@@ -50,4 +50,9 @@ public class Game {
     public void thirdTokenPlacementCM2(int x) {
         setState(getState().thirdTokenCM2(x));
     }
+
+    //AwaitAlienSpawn
+    public void alienPlacment() {
+        setState(getState().alienPlacment());
+    }
 }

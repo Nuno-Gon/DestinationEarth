@@ -102,6 +102,10 @@ public class GameData { //Dados do jogo
         this.journeyTracker = journeyTracker;
     }
 
+    public String getJourneyTrackerIndex(int x) {
+        return journeyTracker[x];
+    }
+
     public int getHealthTracker() {
         return healthTracker;
     }
