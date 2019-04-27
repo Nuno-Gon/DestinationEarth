@@ -62,14 +62,20 @@ public class Game {
     }
 
     public void attack() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setState(getState().attack());
     }
 
     public void sealRoom() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void noAP() {
+        setState(getState().noAP());
+    }
+
+    //AwaitMove
     public void moveCM(Room r, int cm) {
         setState(getState().moveCM(r, cm));
     }
+
 }

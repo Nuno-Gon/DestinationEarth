@@ -17,8 +17,13 @@ public class AwaitCrewPhase extends StateAdapter {
 
     @Override
     public IStates move() {
-        //gameData.setActionPoints(0);
         return new AwaitMove(gameData);
+    }
+
+    @Override
+    public IStates noAP() {
+        gameData.setActionPoints(5);
+        return new AwaitAlienPhase(gameData);
     }
 
 }

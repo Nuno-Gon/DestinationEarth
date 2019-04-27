@@ -28,6 +28,9 @@ public interface IStates {
 
     public IStates move();
 
+    public IStates noAP();
+
     //AwaitMove
     public IStates moveCM(Room r, int cm);
+
 }

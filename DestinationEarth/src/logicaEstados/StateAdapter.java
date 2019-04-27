@@ -54,4 +54,9 @@ public class StateAdapter implements IStates {
     public IStates moveCM(Room r, int cm) {
         return this;
     }
+
+    @Override
+    public IStates noAP() {
+        return this;
+    }
 }

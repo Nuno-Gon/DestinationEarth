@@ -10,9 +10,9 @@ public class AwaitDieRoll extends StateAdapter {
     }
 
     @Override
-    public IStates start() {
+    public IStates attack() {
 
         //gameData.setActionPoints(0);
-        return new AwaitCrewMembersSelection(gameData);
+        return new AwaitCrewPhase(gameData);
     }
 }

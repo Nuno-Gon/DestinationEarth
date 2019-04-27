@@ -92,9 +92,14 @@ public class TextUserInterface {
                 iuAwaitMove();
             } else if (g.getState() instanceof AwaitDieRoll) {
                 iuAwaitDieRoll();
+            } else if (g.getState() instanceof AwaitAlienPhase) {
+                iuAwaitAlienPhase();
             } else if (g.getState() instanceof AwaitRestPhase) {
                 return;
+            } else if (g.getState() instanceof GameOver) {
+                iuGameOver();
             }
+
         }
     }
 
@@ -268,10 +273,14 @@ public class TextUserInterface {
     }
 
     private void iuAwaitCrewPhase() {
+        int ap = g.getGameData().getActionPoints();
+        if (ap == 0) {
+            g.noAP();
+        }
         System.out.println();
         System.out.println("  --> Crew Phase <--");
         System.out.println("\tEach action uses 1 AP.");
-        System.out.println("\tYou have: " + g.getGameData().getActionPoints() + " AP");
+        System.out.println("\tYou have: " + ap + " AP");
         System.out.println("\t1 - Move");
         System.out.println("\t2 - Attack");
         System.out.println("\t3 - Heal one Health (Doctor Only)");
@@ -305,9 +314,46 @@ public class TextUserInterface {
     }
 
     private void iuAwaitDieRoll() {
+        String cm1 = g.getGameData().getCrewMemberFirst().getName();
+        String cm2 = g.getGameData().getCrewMemberSecond().getName();
+        int na_cm1 = g.getGameData().getCrewMemberFirst().getCurrentRoom().getAliens();
+        int na_cm2 = g.getGameData().getCrewMemberSecond().getCurrentRoom().getAliens();
+
         System.out.println();
-        System.out.println("  --> Dice <--");
-        System.out.println("\t1 - Roll die");
+        System.out.println("  --> Dice Attack <--");
+        System.out.println("Aliens in the same room as the " + cm1);
+        System.out.println(">>" + na_cm1);
+        System.out.println("Aliens in the same room as the " + cm2);
+        System.out.println(">>" + na_cm2);
+        System.out.println();
+        System.out.println("  --> Who's Attacking <--");
+        if (0 < na_cm1) {
+            System.out.println("\t1 - " + cm1);
+        } else {
+            System.out.println("No alien in " + cm1 + "'s room.");
+        }
+        if (0 < na_cm2) {
+            System.out.println("\t2 - " + cm2);
+        } else {
+            System.out.println("No alien in " + cm2 + "'s room.");
+        }
+        if ((na_cm1 + na_cm2) == 0) {
+            iuAwaitBeginning(); //No aliens, get back to Crew Phase
+        }
+        System.out.print("\t>>");
+        int a = sc.nextInt();
+        switch (a) {
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+
+        System.out.println();
+        System.out.println("  --> Dice Attack <--");
+        System.out.println("\t1 - Roll dice");
         System.out.println("\t2 - Choose number");
         System.out.print("\t>>");
         int x = sc.nextInt();
@@ -315,9 +361,12 @@ public class TextUserInterface {
             case 1:
                 break;
             case 2:
+                System.out.println("Number:");
+                System.out.print("\t>>");
+                x = sc.nextInt();
                 break;
             default:
-                iuAwaitDieRoll();
+                break;
         }
     }
 
@@ -359,5 +408,15 @@ public class TextUserInterface {
         int x = sc.nextInt();
 
         return r.getExits().get(x);
+    }
+
+    private void iuAwaitAlienPhase() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void iuGameOver() {
+        System.out.println("\t--> GAME OVER! <--");
+        //say why
+        //send to beginning implement transition
     }
 }
