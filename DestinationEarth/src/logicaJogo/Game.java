@@ -78,6 +78,18 @@ public class Game {
         setState(getState().seal());
     }
 
+    public void gameOver() {
+        setState(getState().gameOver());
+    }
+
+    public void fixHull() {
+        setState(getState().fixHull());
+    }
+
+    public void heal() {
+        setState(getState().heal());
+    }
+
     //AwaitMove
     public void moveCM(Room r, int cm) {
         setState(getState().moveCM(r, cm));
@@ -92,12 +104,8 @@ public class Game {
         setState(getState().noAlien());
     }
 
-    public void gameOver() {
-        setState(getState().gameOver());
-    }
-
+    //GameOver
     public void replay() {
         setState(getState().replay());
     }
-
 }

@@ -37,6 +37,10 @@ public interface IStates {
 
     public IStates gameOver();
 
+    public IStates fixHull();
+
+    public IStates heal();
+
     //AwaitMove
     public IStates moveCM(Room r, int cm);
 
@@ -47,4 +51,5 @@ public interface IStates {
 
     //GameOver
     public IStates replay();
+
 }

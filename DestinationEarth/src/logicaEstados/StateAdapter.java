@@ -90,4 +90,14 @@ public class StateAdapter implements IStates {
     public IStates replay() {
         return this;
     }
+
+    @Override
+    public IStates fixHull() {
+        return this;
+    }
+
+    @Override
+    public IStates heal() {
+        return this;
+    }
 }

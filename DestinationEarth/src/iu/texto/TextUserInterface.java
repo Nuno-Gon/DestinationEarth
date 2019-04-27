@@ -275,7 +275,6 @@ public class TextUserInterface {
         int ap = g.getGameData().getActionPoints();
         String cm1 = g.getGameData().getCrewMemberFirst().getName();
         String cm2 = g.getGameData().getCrewMemberSecond().getName();
-        g.getGameData().setHullTracker(0);
         if (ap == 0) {
             if (g.getGameData().getHealthTracker() == 0 || g.getGameData().getHullTracker() == 0) {
                 g.gameOver();
@@ -302,10 +301,19 @@ public class TextUserInterface {
             case 2:
                 g.attack();
                 break;
-            case 3:
-                //if(cm1.equals("Doctor") || cm1.equals("")) fazer dentro do heal() na class CrewPhase se tiver médico
+            case 3: //if there is a doctor in the crew heals
+                if (cm1.equals("Doctor") || cm2.equals("Doctor")) {
+                    g.heal();
+                } else {
+                    System.out.println("No Doctor in the crew.");
+                }
                 break;
-            case 4:
+            case 4: //if there is a engineer in the crew heals
+                if (cm1.equals("Engineer") || cm2.equals("Engineer")) {
+                    g.fixHull();
+                } else {
+                    System.out.println("No Engineer in the crew.");
+                }
                 break;
             case 5:
                 g.trap();

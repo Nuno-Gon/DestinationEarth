@@ -38,4 +38,18 @@ public class AwaitCrewPhase extends StateAdapter {
     public IStates gameOver() {
         return new GameOver(gameData);
     }
+
+    @Override
+    public IStates fixHull() {
+        gameData.setHullTracker(gameData.getHullTracker() + 1);
+        gameData.setActionPoints(gameData.getActionPoints() - 1);
+        return new AwaitCrewPhase(gameData);
+    }
+
+    @Override
+    public IStates heal() {
+        gameData.setHealthTracker(gameData.getHealthTracker() + 1);
+        gameData.setActionPoints(gameData.getActionPoints() - 1);
+        return new AwaitCrewPhase(gameData);
+    }
 }
