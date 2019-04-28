@@ -31,15 +31,17 @@ public interface IStates {
 
     public IStates noAP();
 
-    public IStates seal();
-
-    public IStates trap();
-
     public IStates gameOver();
 
     public IStates fixHull();
 
     public IStates heal();
+
+    public IStates seal();
+
+    public IStates trap(int trap, int room);
+
+    public IStates detonatePD(int x);
 
     //AwaitMove
     public IStates moveCM(Room r, int cm);

@@ -316,9 +316,10 @@ public class TextUserInterface {
                 }
                 break;
             case 5:
-                g.trap();
+                iuTrap();
                 break;
             case 6:
+                iuDetonatePD();
                 break;
             case 7:
                 g.seal();
@@ -438,5 +439,35 @@ public class TextUserInterface {
         g.replay();
         //say why
         //send to beginning implement transition
+    }
+
+    private void iuTrap() {
+        System.out.println();
+        System.out.println("\t  --> Select Trap <--");
+        System.out.println("\t1 - Organic Detonator");
+        System.out.println("\t2 - Particle Disperser");
+        System.out.print("\t>>");
+        int trap = sc.nextInt();
+
+        System.out.println("\t  --> Select Room <--");
+        System.out.println("\t" + g.getGameData().getCrewMemberFirst().getCurrentRoom().getNum() + " - " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
+        System.out.println("\t" + g.getGameData().getCrewMemberSecond().getCurrentRoom().getNum() + " - " + g.getGameData().getCrewMemberSecond().getCurrentRoom().getName());
+        System.out.print("\t>>");
+        int room = sc.nextInt();
+
+        g.trap(trap, room - 1);
+    }
+
+    private void iuDetonatePD() {
+        System.out.println();
+        System.out.println("\t  --> Particle Disperser <--");
+        g.getGameData().getShipRoomList().stream().filter((r) -> (r.isTrapParticleDisperser() == true)).forEachOrdered((r) -> {
+            System.out.println("\t" + r.getNum() + " - " + r.getName());
+        });
+        System.out.print("Choose a room >>");
+        int x = sc.nextInt();
+
+        g.detonatePD(x);
+        System.out.println("All organic matter in the room " + x + " dispersed after a blinding flash!");
     }
 }

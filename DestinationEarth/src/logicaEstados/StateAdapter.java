@@ -67,7 +67,12 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates trap() {
+    public IStates trap(int trap, int room) {
+        return this;
+    }
+
+    @Override
+    public IStates detonatePD(int x) {
         return this;
     }
 

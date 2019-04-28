@@ -40,18 +40,18 @@ public class GameData { //Dados do jogo
 
     private void createRooms() {
         Room bridge, sickBay, brig, crewQuarters, conferenceRoom, shuttleBay, weaponsBay, messHall, engineering, astrometics, holodeck, hydroponics;
-        bridge = new Room("Bridge");
-        sickBay = new Room("Sick Bay");
-        brig = new Room("Brig");
-        crewQuarters = new Room("Crew Quarters");
-        conferenceRoom = new Room("Conference Room");
-        shuttleBay = new Room("Shuttle Bay");
-        weaponsBay = new Room("Weapons Bay");
-        messHall = new Room("Mess Hall");
-        engineering = new Room("Engineering");
-        astrometics = new Room("Astrometics");
-        holodeck = new Room("Holodeck");
-        hydroponics = new Room("Hydroponics");
+        bridge = new Room("Bridge", 1);
+        sickBay = new Room("Sick Bay", 2);
+        brig = new Room("Brig", 3);
+        crewQuarters = new Room("Crew Quarters", 4);
+        conferenceRoom = new Room("Conference Room", 5);
+        shuttleBay = new Room("Shuttle Bay", 6);
+        weaponsBay = new Room("Weapons Bay", 7);
+        messHall = new Room("Mess Hall", 8);
+        engineering = new Room("Engineering", 9);
+        astrometics = new Room("Astrometics", 10);
+        holodeck = new Room("Holodeck", 11);
+        hydroponics = new Room("Hydroponics", 12);
 
         bridge.setExits(5, conferenceRoom);
         bridge.setExits(8, messHall);

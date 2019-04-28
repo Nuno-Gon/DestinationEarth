@@ -70,14 +70,6 @@ public class Game {
         setState(getState().noAP());
     }
 
-    public void trap() {
-        setState(getState().trap());
-    }
-
-    public void seal() {
-        setState(getState().seal());
-    }
-
     public void gameOver() {
         setState(getState().gameOver());
     }
@@ -88,6 +80,18 @@ public class Game {
 
     public void heal() {
         setState(getState().heal());
+    }
+
+    public void trap(int trap, int room) {
+        setState(getState().trap(trap, room));
+    }
+
+    public void seal() {
+        setState(getState().seal());
+    }
+
+    public void detonatePD(int x) {
+        setState(getState().detonatePD(x));
     }
 
     //AwaitMove

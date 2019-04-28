@@ -5,13 +5,17 @@ import java.util.*;
 public class Room {
 
     private final String name;
+    private final int num;
     private final HashMap<Integer, Room> exits;
     private int aliens;
+    private boolean trapOrganicDetonator = false;
+    private boolean trapParticleDisperser = false;
 
-    public Room(String name) {
+    public Room(String name, int num) {
         exits = new HashMap<>();
         this.name = name;
         this.aliens = 0;
+        this.num = num;
     }
 
     public HashMap<Integer, Room> getExits() {
@@ -32,5 +36,25 @@ public class Room {
 
     public void setAliens(int aliens) {
         this.aliens = aliens;
+    }
+
+    public boolean isTrapOrganicDetonator() {
+        return trapOrganicDetonator;
+    }
+
+    public void setTrapOrganicDetonator(boolean trapOrganicDetonator) {
+        this.trapOrganicDetonator = trapOrganicDetonator;
+    }
+
+    public boolean isTrapParticleDisperser() {
+        return trapParticleDisperser;
+    }
+
+    public void setTrapParticleDisperser(boolean trapParticleDisperser) {
+        this.trapParticleDisperser = trapParticleDisperser;
+    }
+
+    public int getNum() {
+        return num;
     }
 }
