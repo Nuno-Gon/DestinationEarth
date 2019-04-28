@@ -112,4 +112,9 @@ public class Game {
     public void replay() {
         setState(getState().replay());
     }
+
+    //AwaitAlienPhase
+    public void alienPhase() {
+        setState(getState().alienPhase());
+    }
 }

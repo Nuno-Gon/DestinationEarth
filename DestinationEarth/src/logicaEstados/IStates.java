@@ -54,4 +54,7 @@ public interface IStates {
     //GameOver
     public IStates replay();
 
+    //AwaitAlienPhase
+    public IStates alienPhase();
+
 }

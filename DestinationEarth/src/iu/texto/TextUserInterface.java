@@ -95,7 +95,7 @@ public class TextUserInterface {
             } else if (g.getState() instanceof AwaitAlienPhase) {
                 iuAwaitAlienPhase();
             } else if (g.getState() instanceof AwaitRestPhase) {
-                return;
+                iuAwaitRestPhase();
             } else if (g.getState() instanceof GameOver) {
                 iuGameOver();
             }
@@ -266,12 +266,11 @@ public class TextUserInterface {
     private void showAliens() {
         System.out.println("\n  --> Aliens Locations <--");
         g.getGameData().getShipRoomList().stream().filter((roomList) -> (roomList.getAliens() > 0)).forEachOrdered((roomList) -> {
-            System.out.println("\t" + roomList.getName() + " -> " + roomList.getAliens());
+            System.out.println("Room: " + roomList.getNum() + "- " + roomList.getName() + " -> " + roomList.getAliens() + "A");
         });
     }
 
     private void iuAwaitCrewPhase() {
-        infoGame();
         int ap = g.getGameData().getActionPoints();
         String cm1 = g.getGameData().getCrewMemberFirst().getName();
         String cm2 = g.getGameData().getCrewMemberSecond().getName();
@@ -280,52 +279,54 @@ public class TextUserInterface {
                 g.gameOver();
             }
             g.noAP();
-        }
-        System.out.println();
-        System.out.println("\t  --> Crew Phase <--");
-        System.out.println("\tEach action uses 1 AP.");
-        System.out.println("\tYou have: " + ap + " AP");
-        System.out.println("\t1 - Move");
-        System.out.println("\t2 - Attack");
-        System.out.println("\t3 - Heal one Health (Doctor Only)");
-        System.out.println("\t4 - Fix one Hull [Engineer Only]");
-        System.out.println("\t5 - Setting Trap");
-        System.out.println("\t6 - Detonate Particle Disperser");
-        System.out.println("\t7 - Seal Room");
-        System.out.print("\t>>");
-        int x = sc.nextInt();
-        switch (x) {
-            case 1:
-                g.move();
-                break;
-            case 2:
-                g.attack();
-                break;
-            case 3: //if there is a doctor in the crew heals
-                if (cm1.equals("Doctor") || cm2.equals("Doctor")) {
-                    g.heal();
-                } else {
-                    System.out.println("No Doctor in the crew.");
-                }
-                break;
-            case 4: //if there is a engineer in the crew heals
-                if (cm1.equals("Engineer") || cm2.equals("Engineer")) {
-                    g.fixHull();
-                } else {
-                    System.out.println("No Engineer in the crew.");
-                }
-                break;
-            case 5:
-                iuTrap();
-                break;
-            case 6:
-                iuDetonatePD();
-                break;
-            case 7:
-                iuSealRoom();
-                break;
-            default:
-                break;
+        } else {
+            infoGame();
+            System.out.println();
+            System.out.println("\t  --> Crew Phase <--");
+            System.out.println("\tEach action uses 1 AP.");
+            System.out.println("\tYou have: " + ap + " AP");
+            System.out.println("\t1 - Move");
+            System.out.println("\t2 - Attack");
+            System.out.println("\t3 - Heal one Health (Doctor Only)");
+            System.out.println("\t4 - Fix one Hull [Engineer Only]");
+            System.out.println("\t5 - Setting Trap");
+            System.out.println("\t6 - Detonate Particle Disperser");
+            System.out.println("\t7 - Seal Room");
+            System.out.print("\t>>");
+            int x = sc.nextInt();
+            switch (x) {
+                case 1:
+                    g.move();
+                    break;
+                case 2:
+                    g.attack();
+                    break;
+                case 3: //if there is a doctor in the crew heals
+                    if (cm1.equals("Doctor") || cm2.equals("Doctor")) {
+                        g.heal();
+                    } else {
+                        System.out.println("No Doctor in the crew.");
+                    }
+                    break;
+                case 4: //if there is a engineer in the crew heals
+                    if (cm1.equals("Engineer") || cm2.equals("Engineer")) {
+                        g.fixHull();
+                    } else {
+                        System.out.println("No Engineer in the crew.");
+                    }
+                    break;
+                case 5:
+                    iuTrap();
+                    break;
+                case 6:
+                    iuDetonatePD();
+                    break;
+                case 7:
+                    iuSealRoom();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -441,10 +442,6 @@ public class TextUserInterface {
         }
     }
 
-    private void iuAwaitAlienPhase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     private void iuGameOver() {
         System.out.println("\t--> GAME OVER! <--");
         g.replay();
@@ -496,5 +493,14 @@ public class TextUserInterface {
 
         g.seal(x - 1); //Atenção a transformar na parte grafica -1
         System.out.println("Room sealed: " + g.getGameData().getIndexShipRoomList(x - 1).getName());
+    }
+
+    private void iuAwaitAlienPhase() {
+        System.out.println("--> Alien Phase <--");
+        g.alienPhase();
+    }
+
+    private void iuAwaitRestPhase() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

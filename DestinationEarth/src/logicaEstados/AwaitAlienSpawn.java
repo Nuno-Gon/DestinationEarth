@@ -25,7 +25,7 @@ public class AwaitAlienSpawn extends StateAdapter {
         //roll 2D6 for each alien and place them in the room
         for (int i = 0; i < a; i++) {
             int die = gameData.rollDice() + gameData.rollDice();
-            gameData.getIndexShipRoomList(die).setAliens(gameData.getIndexShipRoomList(die).getAliens() + 1);
+            gameData.getIndexShipRoomList(die - 1).setAliens(gameData.getIndexShipRoomList(die - 1).getAliens() + 1);
         }
     }
 }

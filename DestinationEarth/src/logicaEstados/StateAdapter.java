@@ -105,4 +105,9 @@ public class StateAdapter implements IStates {
     public IStates heal() {
         return this;
     }
+
+    @Override
+    public IStates alienPhase() {
+        return this;
+    }
 }
