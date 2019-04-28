@@ -60,7 +60,8 @@ public class AwaitCrewPhase extends StateAdapter {
     }
 
     @Override
-    public IStates seal() {
+    public IStates seal(int x) {
+        gameData.getIndexShipRoomList(x).setSealed(true);
         gameData.setActionPoints(gameData.getActionPoints() - 1);
         return new AwaitCrewPhase(gameData);
     }

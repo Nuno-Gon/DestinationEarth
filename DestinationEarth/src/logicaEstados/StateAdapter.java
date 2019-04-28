@@ -62,7 +62,7 @@ public class StateAdapter implements IStates {
     }
 
     @Override
-    public IStates seal() {
+    public IStates seal(int x) {
         return this;
     }
 

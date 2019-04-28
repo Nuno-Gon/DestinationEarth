@@ -8,14 +8,18 @@ public class Room {
     private final int num;
     private final HashMap<Integer, Room> exits;
     private int aliens;
-    private boolean trapOrganicDetonator = false;
-    private boolean trapParticleDisperser = false;
+    private boolean trapOrganicDetonator;
+    private boolean trapParticleDisperser;
+    private boolean sealed;
 
     public Room(String name, int num) {
         exits = new HashMap<>();
         this.name = name;
         this.aliens = 0;
         this.num = num;
+        this.trapOrganicDetonator = false;
+        this.trapParticleDisperser = false;
+        this.sealed = false;
     }
 
     public HashMap<Integer, Room> getExits() {
@@ -56,5 +60,13 @@ public class Room {
 
     public int getNum() {
         return num;
+    }
+
+    public boolean isSealed() {
+        return sealed;
+    }
+
+    public void setSealed(boolean sealed) {
+        this.sealed = sealed;
     }
 }

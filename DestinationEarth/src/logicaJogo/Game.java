@@ -86,8 +86,8 @@ public class Game {
         setState(getState().trap(trap, room));
     }
 
-    public void seal() {
-        setState(getState().seal());
+    public void seal(int x) {
+        setState(getState().seal(x));
     }
 
     public void detonatePD(int x) {

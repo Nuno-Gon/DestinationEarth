@@ -322,7 +322,7 @@ public class TextUserInterface {
                 iuDetonatePD();
                 break;
             case 7:
-                g.seal();
+                iuSealRoom();
                 break;
             default:
                 break;
@@ -403,12 +403,16 @@ public class TextUserInterface {
             case 1:
                 r = g.getGameData().getCrewMemberFirst().getCurrentRoom();
                 r = showConnectedRooms(r);
-                g.moveCM(r, 1);
+                if (r != null) {
+                    g.moveCM(r, 1);
+                }
                 break;
             case 2:
                 r = g.getGameData().getCrewMemberSecond().getCurrentRoom();
                 r = showConnectedRooms(r);
-                g.moveCM(r, 2);
+                if (r != null) {
+                    g.moveCM(r, 2);
+                }
                 break;
             default:
                 System.out.println("Not an option.");
@@ -420,14 +424,21 @@ public class TextUserInterface {
     private Room showConnectedRooms(Room r) {
         System.out.println();
         System.out.println("\t --> Connected Rooms <--");
-        System.out.println("Current: " + r.getName());
+        System.out.println("Current: " + r.getNum() + " - " + r.getName());
+        System.out.println("Rooms: ");
         r.getExits().keySet().forEach((Integer i) -> {
-            System.out.println("\tRoom: " + i);
+            System.out.println("\t " + i + " - " + r.getExits().get(i).getName());
         });
-        System.out.print("Choose a room >>");
+        System.out.print("Choose >>");
         int x = sc.nextInt();
 
-        return r.getExits().get(x);
+        if (r.getExits().get(x).isSealed() == true) {
+            System.out.println("Room is SEALED!");
+            System.out.println("You didn't move.");
+            return null;
+        } else {
+            return r.getExits().get(x);
+        }
     }
 
     private void iuAwaitAlienPhase() {
@@ -455,7 +466,7 @@ public class TextUserInterface {
         System.out.print("\t>>");
         int room = sc.nextInt();
 
-        g.trap(trap, room - 1);
+        g.trap(trap, room - 1); //Atenção a transformar na parte grafica -1
     }
 
     private void iuDetonatePD() {
@@ -469,5 +480,21 @@ public class TextUserInterface {
 
         g.detonatePD(x);
         System.out.println("All organic matter in the room " + x + " dispersed after a blinding flash!");
+    }
+
+    private void iuSealRoom() {
+        System.out.println();
+        System.out.println("\t  --> Seal Room <--");
+        System.out.println("\t3 - Brig");
+        System.out.println("\t4 - Crew Quarters");
+        System.out.println("\t7 - Weapons Bay");
+        System.out.println("\t9 - Engineering ");
+        System.out.println("\t11 - Holodeck");
+        System.out.println("\t12 - Hydroponics");
+        System.out.print("\t>>");
+        int x = sc.nextInt();
+
+        g.seal(x - 1); //Atenção a transformar na parte grafica -1
+        System.out.println("Room sealed: " + g.getGameData().getIndexShipRoomList(x - 1).getName());
     }
 }

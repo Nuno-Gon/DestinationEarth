@@ -37,7 +37,7 @@ public interface IStates {
 
     public IStates heal();
 
-    public IStates seal();
+    public IStates seal(int x);
 
     public IStates trap(int trap, int room);
 
