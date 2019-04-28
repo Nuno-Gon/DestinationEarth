@@ -26,6 +26,9 @@ public class GameData { //Dados do jogo
     //Action Points
     private int actionPoints;
 
+    //Upgrade add 1 to the result of an attack die
+    private int addToAttackDie;
+
     public GameData() {
         this.journeyTracker = new String[]{"S", "2A", "3A", "4A", "5A*", "R", "4A", "5A", "6A*", "R", "6A", "7A*", "R", "8A", "E"};
         this.turn = 0;
@@ -35,6 +38,7 @@ public class GameData { //Dados do jogo
         this.crewMemberFirst = null;
         this.crewMemberSecond = null;
         this.actionPoints = 0;
+        this.addToAttackDie = 0;
         createRooms();
     }
 
@@ -187,5 +191,13 @@ public class GameData { //Dados do jogo
 
     public void setActionPoints(int actionPoints) {
         this.actionPoints = actionPoints;
+    }
+
+    public int getAddToAttackDie() {
+        return addToAttackDie;
+    }
+
+    public void setAddToAttackDie(int addToAttackDie) {
+        this.addToAttackDie = addToAttackDie;
     }
 }

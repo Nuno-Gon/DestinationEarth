@@ -117,4 +117,26 @@ public class Game {
     public void alienPhase() {
         setState(getState().alienPhase());
     }
+
+    //AwaitRestPhase
+    public void rest() {
+        setState(getState().rest());
+    }
+
+    //AwaitRestPhase
+    public void noIP() {
+        setState(getState().noIP());
+    }
+
+    public void addMovement(int cm) {
+        setState(getState().addMovement(cm));
+    }
+
+    public void addAttackDie(int cmd) {
+        setState(getState().addAttackDie(cmd));
+    }
+
+    public void addOneToAttackDie() {
+        setState(getState().addOneToAttackDie());
+    }
 }

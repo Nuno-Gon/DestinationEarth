@@ -21,7 +21,7 @@ public class AwaitDieRoll extends StateAdapter {
         } else {
             gameData.setCurrentDice(x); //Só para a msg aparecer bem no debug do UI
         }
-        x = gameData.getCurrentDice();
+        x = gameData.getCurrentDice() + gameData.getAddToAttackDie(); //Upgrade add to dice
         //Kill alien if 5 or higher
         if (x >= 5) {
             cm.getCurrentRoom().setAliens(cm.getCurrentRoom().getAliens() - 1);

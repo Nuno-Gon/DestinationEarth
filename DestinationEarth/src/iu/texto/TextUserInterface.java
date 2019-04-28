@@ -443,7 +443,7 @@ public class TextUserInterface {
     }
 
     private void iuGameOver() {
-        System.out.println("\t--> GAME OVER! <--");
+        System.out.println("\t --> GAME OVER! <--");
         g.replay();
         //say why
         //send to beginning implement transition
@@ -496,11 +496,118 @@ public class TextUserInterface {
     }
 
     private void iuAwaitAlienPhase() {
-        System.out.println("--> Alien Phase <--");
+        System.out.println("\t --> Alien Phase <--");
         g.alienPhase();
     }
 
     private void iuAwaitRestPhase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int ip = g.getGameData().getInspirationPoints();
+        if (ip == 0) {
+            g.noIP();
+        } else {
+            System.out.println("\t --> Rest Phase <--");
+            System.out.println("\t You have: " + ip + " IP");
+            System.out.println("\t Upgrades:");
+            System.out.println("\t 1 - Add 1 Health (1 IP)");
+            System.out.println("\t 2 - Fix 1 Hull (1 IP)");
+            System.out.println("\t 3 - Build 1 Organic Detonator (2 IP)");
+            System.out.println("\t 4 - Add 1 to movement (4 IP)");
+            System.out.println("\t 5 - Build one Particle Desperser (5 IP)");
+            System.out.println("\t 6 - Gain 1 sealed room token (5 IP)");
+            System.out.println("\t 7 - Gain 1 extra attack die (6 IP)");
+            System.out.println("\t 8 - Add 1 to the result of an Attack Dice (6 IP)");
+            System.out.println("\t 9 - Continue playing...");
+            System.out.print("\t >>");
+            int x = sc.nextInt();
+
+            switch (x) {
+                case 1:
+                    g.heal();
+                    break;
+                case 2:
+                    g.fixHull();
+                    break;
+                case 3:
+                    if (ip < 2) {
+                        System.out.println("Insuficient IP.");
+                        g.noIP();
+                        break;
+                    } else {
+                        System.out.println("\t  --> Select Room <--");
+                        System.out.println("\t " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getNum() + " - " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
+                        System.out.println("\t " + g.getGameData().getCrewMemberSecond().getCurrentRoom().getNum() + " - " + g.getGameData().getCrewMemberSecond().getCurrentRoom().getName());
+                        System.out.print("\t>>");
+                        int room3 = sc.nextInt();
+                        g.trap(1, room3 - 1);
+                        break;
+                    }
+                case 4:
+                    if (ip < 4) {
+                        System.out.println("Insuficient IP.");
+                        g.noIP();
+                        break;
+                    } else {
+                        System.out.println("\t  --> Select Crew Member to Add 1 to Movement<--");
+                        System.out.println("\t 1 - " + g.getGameData().getCrewMemberFirst().getName());
+                        System.out.println("\t 2 - " + g.getGameData().getCrewMemberSecond().getName());
+                        System.out.print("\t>>");
+                        int cm = sc.nextInt();
+                        g.addMovement(cm);
+                        break;
+                    }
+                case 5:
+                    if (ip < 5) {
+                        System.out.println("Insuficient IP.");
+                        g.noIP();
+                        break;
+                    } else {
+                        System.out.println("\t  --> Select Room <--");
+                        System.out.println("\t " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getNum() + " - " + g.getGameData().getCrewMemberFirst().getCurrentRoom().getName());
+                        System.out.println("\t " + g.getGameData().getCrewMemberSecond().getCurrentRoom().getNum() + " - " + g.getGameData().getCrewMemberSecond().getCurrentRoom().getName());
+                        System.out.print("\t>>");
+                        int room5 = sc.nextInt();
+                        g.trap(2, room5 - 1);
+                        break;
+                    }
+                case 6:
+                    if (ip < 5) {
+                        System.out.println("Insuficient IP.");
+                        g.noIP();
+                        break;
+                    } else {
+                        iuSealRoom(); //Reutilizar codigo
+                        break;
+                    }
+                case 7:
+                    if (ip < 6) {
+                        System.out.println("Insuficient IP.");
+                        g.noIP();
+                        break;
+                    } else {
+                        System.out.println("\t  --> Select Crew Member to Add 1 to Attack Die<--");
+                        System.out.println("\t 1 - " + g.getGameData().getCrewMemberFirst().getName());
+                        System.out.println("\t 2 - " + g.getGameData().getCrewMemberSecond().getName());
+                        System.out.print("\t>>");
+                        int cmd = sc.nextInt();
+                        g.addAttackDie(cmd);
+                        break;
+                    }
+                case 8:
+                    if (ip < 6) {
+                        System.out.println("Insuficient IP.");
+                        g.noIP();
+                        break;
+                    } else {
+                        g.addOneToAttackDie();
+                        break;
+                    }
+                case 9:
+                    g.move();
+                    break;
+                default:
+                    break;
+            }
+            g.rest();
+        }
     }
 }

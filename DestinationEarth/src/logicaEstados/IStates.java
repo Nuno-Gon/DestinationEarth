@@ -57,4 +57,15 @@ public interface IStates {
     //AwaitAlienPhase
     public IStates alienPhase();
 
+    //AwaitRestPhase
+    public IStates rest();
+
+    public IStates noIP();
+
+    public IStates addMovement(int cm);
+
+    public IStates addAttackDie(int cmd);
+
+    public IStates addOneToAttackDie();
+
 }

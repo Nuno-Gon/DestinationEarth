@@ -110,4 +110,29 @@ public class StateAdapter implements IStates {
     public IStates alienPhase() {
         return this;
     }
+
+    @Override
+    public IStates rest() {
+        return this;
+    }
+
+    @Override
+    public IStates noIP() {
+        return this;
+    }
+
+    @Override
+    public IStates addMovement(int cm) {
+        return this;
+    }
+
+    @Override
+    public IStates addAttackDie(int cmd) {
+        return this;
+    }
+
+    @Override
+    public IStates addOneToAttackDie() {
+        return this;
+    }
 }
