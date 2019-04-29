@@ -142,6 +142,7 @@ public class TextUserInterface {
         System.out.println();
         System.out.print("Special:");
         showSpecial(x);
+        System.out.println();
         System.out.println("Confirm Crew Member (Y/N)");
         System.out.print(">>");
         char c = sc.next().charAt(0);
