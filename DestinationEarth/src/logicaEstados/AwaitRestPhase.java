@@ -57,11 +57,7 @@ public class AwaitRestPhase extends StateAdapter {
 
     @Override
     public IStates noIP() {
-        return new AwaitAlienSpawn(gameData);
-    }
-
-    @Override
-    public IStates move() {
+        gameData.setTurn(gameData.getTurn() + 1);
         return new AwaitAlienSpawn(gameData);
     }
 

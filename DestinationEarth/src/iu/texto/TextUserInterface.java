@@ -8,7 +8,7 @@ import logicaJogo.crewMembers.*;
 public class TextUserInterface {
 
     Scanner sc;
-    private final Game g;
+    private Game g;
     private boolean sair = false;
 
     public TextUserInterface(Game game) {
@@ -42,33 +42,31 @@ public class TextUserInterface {
         System.out.println("\t\t   ===== Prod PaRiS & Psyk0 =====\n\n");
 
         while (true) {
-            System.out.println("\t  --> Menu Principal <--");
-            System.out.println("\t1 - Jogar");
-            System.out.println("\t2 - Guardar");
-            System.out.println("\t3 - Carregar");
-            System.out.println("\t4 - Sair");
+            System.out.println("\t  --> Menu <--");
+            System.out.println("\t1 - Play");
+            System.out.println("\t2 - Load");
+            System.out.println("\t3 - Exit");
             System.out.print("\t>> ");
             int c = sc.nextInt();
             switch (c) {
+                case 0:
+                    save();
+                    break;
                 case 1:
                     //Opcao para Jogar o jogo
                     jogar();
                     break;
                 case 2:
-                    //Opcao para guardar o jogo
-                    System.out.println("Guardar Jogo Atual...\n");
+                    //Opcao para carregar o jogo guardado
+                    load();
                     break;
                 case 3:
-                    //Opcao para carregar o jogo guardado
-                    System.out.println("Carregar Jogo Anterior...\n");
-                    break;
-                case 4:
                     //Opcao para sair do programa
-                    System.err.println("Abandonou o jogo. Ate a proxima!");
+                    System.err.println("Left the game. Goodbye!");
                     sair = true;
                     return;
                 default:
-                    System.err.println("Opcao errada!");
+                    System.err.println("Wrong option!");
                     break;
             }
         }
@@ -98,6 +96,8 @@ public class TextUserInterface {
                 iuAwaitRestPhase();
             } else if (g.getState() instanceof GameOver) {
                 iuGameOver();
+            } else if (g.getState() instanceof Victory) {
+                iuVictory();
             }
         }
     }
@@ -444,9 +444,24 @@ public class TextUserInterface {
 
     private void iuGameOver() {
         System.out.println("\t --> GAME OVER! <--");
-        g.replay();
+        System.out.println("\t1 - New Game");
+        System.out.println("\t2 - Exit");
+        System.out.print("\t>> ");
+        int c = sc.nextInt();
+        switch (c) {
+            case 1:
+                g.replay();
+                break;
+            case 2:
+                System.err.println("Left the game. Goodbye!");
+                sair = true;
+                break;
+            default:
+                break;
+        }
         //say why
         //send to beginning implement transition
+        //toString
     }
 
     private void iuTrap() {
@@ -502,10 +517,11 @@ public class TextUserInterface {
 
     private void iuAwaitRestPhase() {
         int ip = g.getGameData().getInspirationPoints();
+        System.out.println("\n\t --> Rest Phase <--");
         if (ip == 0) {
             g.noIP();
         } else {
-            System.out.println("\t --> Rest Phase <--");
+
             System.out.println("\t You have: " + ip + " IP");
             System.out.println("\t Upgrades:");
             System.out.println("\t 1 - Add 1 Health (1 IP)");
@@ -517,10 +533,14 @@ public class TextUserInterface {
             System.out.println("\t 7 - Gain 1 extra attack die (6 IP)");
             System.out.println("\t 8 - Add 1 to the result of an Attack Dice (6 IP)");
             System.out.println("\t 9 - Continue playing...");
+            System.out.println("\t 0 - Checkpoint. Save Game!");
             System.out.print("\t >>");
             int x = sc.nextInt();
 
             switch (x) {
+                case 0:
+                    save();
+                    break;
                 case 1:
                     g.heal();
                     break;
@@ -602,12 +622,42 @@ public class TextUserInterface {
                         break;
                     }
                 case 9:
-                    g.move();
+                    g.noIP();
                     break;
                 default:
                     break;
             }
             g.rest();
+        }
+    }
+
+    private void save() {
+        g.saveGameToFile(g);
+    }
+
+    private void load() {
+        Game xx = (Game) g.loadGameFromFile();
+        g.setGameData(xx.getGameData());
+        g.setState(xx.getState());
+        System.out.println("Loading Complete!");
+    }
+
+    private void iuVictory() {
+        System.out.println("\t --> VICTORY! <--");
+        System.out.println("\t1 - New Game");
+        System.out.println("\t2 - Exit");
+        System.out.print("\t>> ");
+        int c = sc.nextInt();
+        switch (c) {
+            case 1:
+                g.replay();
+                break;
+            case 2:
+                System.err.println("Left the game. Goodbye!");
+                sair = true;
+                break;
+            default:
+                break;
         }
     }
 }

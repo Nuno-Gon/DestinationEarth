@@ -20,8 +20,12 @@ public class AwaitCrewPhase extends StateAdapter {
 
     @Override
     public IStates noAP() {
-        gameData.setActionPoints(5);
-        return new AwaitAlienPhase(gameData);
+        if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
+            return new GameOver(gameData);
+        } else {
+            gameData.setActionPoints(5);
+            return new AwaitAlienPhase(gameData);
+        }
     }
 
     @Override

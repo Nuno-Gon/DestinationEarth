@@ -1,11 +1,15 @@
 package logicaJogo;
 
+import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logicaEstados.*;
 import logicaJogo.crewMembers.*;
 
-public class Game {
+public class Game implements Serializable {
 
+    private static final String SAVE_PATH = "C:\\Users\\Psyk0\\Documents\\GitHub\\DestinationEarth\\DestinationEarth\\svs\\savefile.dat";
     private GameData gameData; //Dados do jogo
     private IStates state;
 
@@ -138,5 +142,33 @@ public class Game {
 
     public void addOneToAttackDie() {
         setState(getState().addOneToAttackDie());
+    }
+
+    public void saveGameToFile(Game obj) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(SAVE_PATH);
+            ObjectOutputStream oos = new ObjectOutputStream(fileOut);
+
+            oos.writeObject(obj);
+            oos.close();
+            fileOut.close();
+        } catch (IOException ex) {
+        }
+        System.out.println("Game Saved!");
+    }
+
+    public Object loadGameFromFile() {
+        Game gg = null;
+        try {
+
+            FileInputStream fileIn = new FileInputStream(SAVE_PATH);
+            ObjectInputStream ois = new ObjectInputStream(fileIn);
+
+            return ois.readObject();
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

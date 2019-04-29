@@ -10,6 +10,6 @@ public class Victory extends StateAdapter {
 
     @Override
     public IStates replay() {
-        return new AwaitBeginning(gameData);
+        return new AwaitBeginning(new GameData());
     }
 }
