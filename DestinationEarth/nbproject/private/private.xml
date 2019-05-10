@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaJogo/Game.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaEstados/IStates.java</file>
-            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaJogo/crewMembers/CM_Doctor.java</file>
-            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaEstados/AwaitCrewMembersSelection.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaEstados/StateAdapter.java</file>
-            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaEstados/AwaitBeginning.java</file>
+            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaJogo/Room.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaJogo/GameData.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/texto/TextUserInterface.java</file>
         </group>

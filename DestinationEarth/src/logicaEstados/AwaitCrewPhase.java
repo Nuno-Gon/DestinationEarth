@@ -77,6 +77,7 @@ public class AwaitCrewPhase extends StateAdapter {
             return new GameOver(gameData);
         } else {
             gameData.getIndexShipRoomList(x).setTrapParticleDisperser(false);
+            gameData.setInspirationPoints(gameData.getIndexShipRoomList(x).getAliens());
             gameData.getIndexShipRoomList(x).setAliens(0);
             gameData.setActionPoints(gameData.getActionPoints() - 1);
             return new AwaitCrewPhase(gameData);

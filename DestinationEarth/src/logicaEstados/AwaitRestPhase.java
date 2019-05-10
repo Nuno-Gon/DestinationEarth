@@ -27,7 +27,7 @@ public class AwaitRestPhase extends StateAdapter {
                 return new AwaitCrewPhase(gameData);
         }
         gameData.setActionPoints(gameData.getActionPoints() - 1);
-        return new AwaitCrewPhase(gameData);
+        return new AwaitRestPhase(gameData);
     }
 
     @Override

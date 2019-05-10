@@ -24,8 +24,10 @@ public class AwaitDieRoll extends StateAdapter {
         x = gameData.getCurrentDice() + gameData.getAddToAttackDie(); //Upgrade add to dice
         //Kill alien if 5 or higher
         if (x >= 5) {
-            cm.getCurrentRoom().setAliens(cm.getCurrentRoom().getAliens() - 1);
-            gameData.setInspirationPoints(gameData.getInspirationPoints() + 1);
+            if (cm.getCurrentRoom().getAliens() != 0) {
+                cm.getCurrentRoom().setAliens(cm.getCurrentRoom().getAliens() - 1);
+                gameData.setInspirationPoints(gameData.getInspirationPoints() + 1);
+            }
         }
 
         gameData.setActionPoints(gameData.getActionPoints() - 1);
