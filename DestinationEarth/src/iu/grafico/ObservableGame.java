@@ -90,4 +90,20 @@ public class ObservableGame extends Observable {
     int getActionPoints() {
         return game.getGameData().getActionPoints();
     }
+
+    int getCMNum(int n) {
+        if (n == 1) {
+            return game.getGameData().getCrewMemberFirst().getNum();
+        } else {
+            return game.getGameData().getCrewMemberSecond().getNum();
+        }
+    }
+
+    Object getCrewMemberFirst() {
+        return game.getGameData().getCrewMemberFirst();
+    }
+
+    Object getCrewMemberSecond() {
+        return game.getGameData().getCrewMemberSecond();
+    }
 }
