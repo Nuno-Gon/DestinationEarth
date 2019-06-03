@@ -29,7 +29,7 @@ public class GamingPanel extends JPanel implements Observer {
 
     private void setupComponents() {
         jtP = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        jtP.setPreferredSize(new Dimension(250, 100));
+        jtP.setPreferredSize(new Dimension(100, 30));
         jt = game.getJourneyTacker();
         infoP = new JPanel();
         infoP.setLayout(new BoxLayout(infoP, BoxLayout.PAGE_AXIS));

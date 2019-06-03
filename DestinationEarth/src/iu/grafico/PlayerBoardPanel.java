@@ -54,22 +54,22 @@ public class PlayerBoardPanel extends JPanel implements Observer {
             paintCM2 = true;
 
         }
-
+        g2d.setFont(new Font("Arial", Font.PLAIN, 20));
         //paint crew member one
         if (paintCM1 == true) {
             cmIMG_1.setImage(getImagem(cmNum_1 - 1));
             cmIMG_1.paintIcon(this, g, 0, 0);
             g2d.setColor(Color.RED);
-            g2d.fillRect(50, 77, 38, 36);
-            g2d.fillRect(50, 156, 38, 35);
+            g2d.fillRect(55, 80, 30, 30);
+            g2d.fillRect(55, 160, 30, 30);
         }
         //paint crew member two
         if (paintCM2 == true) {
             cmIMG_2.setImage(getImagem(cmNum_2 - 1));
-            cmIMG_1.paintIcon(this, g, 0, 369);
+            cmIMG_2.paintIcon(this, g, 0, 371);
             g2d.setColor(Color.BLUE);
-            g2d.fillRect(50, 446, 38, 36);
-            g2d.fillRect(50, 525, 38, 36);
+            g2d.fillRect(55, 450, 30, 30);
+            g2d.fillRect(55, 530, 30, 30);
         }
     }
 
