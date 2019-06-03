@@ -140,7 +140,7 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     break;
             }
         }
-        if (!(game.getState() instanceof AwaitAlienSpawn)) { // || REST PHASE
+        if (!(game.getState() instanceof AwaitAlienSpawn) || !(game.getState() instanceof AwaitRestPhase)) { // || REST PHASE
 
             for (Room roomList : game.getGame().getGameData().getShipRoomList()) {
 

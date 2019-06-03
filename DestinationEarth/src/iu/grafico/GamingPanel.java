@@ -71,9 +71,18 @@ public class GamingPanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         try {
-            jtTurn = game.getJourneyTackerTurn();
             Component a = jtP.getComponent(jtTurn + 1);
+            a.setForeground(Color.red);
+            a.repaint();
+            for (int i = 2; jt.length > i; i++) {
+                a = jtP.getComponent(jtTurn);
+                a.setForeground(Color.white);
+                a.repaint();
+            }
+            jtTurn = game.getJourneyTackerTurn();
+            a = jtP.getComponent(0);
             a.setForeground(Color.red);
             a.repaint();
         } catch (ArrayIndexOutOfBoundsException e) {
