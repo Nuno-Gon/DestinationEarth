@@ -106,4 +106,16 @@ public class ObservableGame extends Observable {
     Object getCrewMemberSecond() {
         return game.getGameData().getCrewMemberSecond();
     }
+
+    int getTHealth() {
+        return game.getGameData().getHealthTracker();
+    }
+
+    int getTHull() {
+        return game.getGameData().getHullTracker();
+    }
+
+    int getTInspirationP() {
+        return game.getGameData().getInspirationPoints();
+    }
 }

@@ -239,6 +239,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM2(1);
                 }
                 game.getGame().getGameData().setTurn(game.getGame().getGameData().getTurn() + 1);
+                game.getGame().getGameData().setActionPoints(game.getGame().getGameData().getActionPoints() - 1);
+                game.getGame().getGameData().setInspirationPoints(game.getGame().getGameData().getInspirationPoints() + 1);
+                game.getGame().getGameData().setHealthTracker(game.getGame().getGameData().getHealthTracker() - 1);
             }
         });
         r2.addActionListener(new ActionListener() {
