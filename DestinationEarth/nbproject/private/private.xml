@@ -6,7 +6,8 @@
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/grafico/DestinationEarthPanel.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/grafico/GamingPanel.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaEstados/AwaitCrewPhase.java</file>
-            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/grafico/CMSelectionPanel.java</file>
+            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaEstados/AwaitCrewMembersSelection.java</file>
+            <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/logicaJogo/crewMembers/CrewMember.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/texto/TextUserInterface.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/grafico/ObservableGame.java</file>
             <file>file:/C:/Users/Psyk0/Documents/GitHub/DestinationEarth/DestinationEarth/src/iu/grafico/ShipBoardPanel.java</file>

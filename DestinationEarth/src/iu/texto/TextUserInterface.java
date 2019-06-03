@@ -158,39 +158,39 @@ public class TextUserInterface {
         CrewMember k;
         switch (x) {
             case 1:
-                k = new CM_Doctor();
+                k = new CM_Doctor(1);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 2:
-                k = new CM_Captain();
+                k = new CM_Captain(2);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 3:
-                k = new CM_Engineer();
+                k = new CM_Engineer(3);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 4:
-                k = new CM_Commander();
+                k = new CM_Commander(4);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 5:
-                k = new CM_RedShirt();
+                k = new CM_RedShirt(5);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 6:
-                k = new CM_MoralOfficer();
+                k = new CM_MoralOfficer(6);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 7:
-                k = new CM_CommsOfficer();
+                k = new CM_CommsOfficer(7);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 8:
-                k = new CM_ScienceOfficer();
+                k = new CM_ScienceOfficer(8);
                 System.out.println(k.getInfoSpecial());
                 break;
             case 9:
-                k = new CM_TransporterChief();
+                k = new CM_TransporterChief(9);
                 System.out.println(k.getInfoSpecial());
                 break;
         }

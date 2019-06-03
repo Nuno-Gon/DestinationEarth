@@ -7,12 +7,14 @@ public abstract class CrewMember {
     protected String name;
     private int movement;
     private int attack;
+    private int num;
     protected String infoSpecial;
     private Room currentRoom;
 
     abstract public void special(GameData gameData);
 
-    public CrewMember() {
+    public CrewMember(int n) {
+        this.num = n;
         this.movement = 1;
         this.attack = 1;
     }
@@ -55,5 +57,13 @@ public abstract class CrewMember {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 }

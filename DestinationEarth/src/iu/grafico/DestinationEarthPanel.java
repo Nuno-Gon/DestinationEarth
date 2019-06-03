@@ -50,7 +50,7 @@ public class DestinationEarthPanel extends JPanel implements Observer {
         shipBPanel = new ShipBoardPanel(game);
         shipBPanel.setPreferredSize(new Dimension(450, 100));
         playerBPanel = new PlayerBoardPanel(game);
-        playerBPanel.setPreferredSize(new Dimension(450, 100));
+        playerBPanel.setPreferredSize(new Dimension(220, 100));
     }
 
     private void setupLayout() {

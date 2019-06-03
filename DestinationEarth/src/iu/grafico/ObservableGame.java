@@ -86,4 +86,8 @@ public class ObservableGame extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    int getActionPoints() {
+        return game.getGameData().getActionPoints();
+    }
 }

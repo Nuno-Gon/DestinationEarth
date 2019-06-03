@@ -28,23 +28,29 @@ public class AwaitCrewMembersSelection extends StateAdapter {
         }
         switch (x) {
             case 1:
-                return new CM_Doctor();
+                return new CM_Doctor(1);
             case 2:
-                return new CM_Captain();
+                return new CM_Captain(2);
             case 3:
-                return new CM_Engineer();
+                return new CM_Engineer(3);
             case 4:
-                return new CM_Commander();
+                return new CM_Commander(4);
             case 5:
-                return new CM_RedShirt();
+                return new CM_RedShirt(5);
             case 6:
-                return new CM_MoralOfficer();
+                return new CM_MoralOfficer(6);
             case 7:
-                return new CM_CommsOfficer();
+                return new CM_CommsOfficer(7);
             case 8:
-                return new CM_ScienceOfficer();
+                return new CM_ScienceOfficer(8);
             case 9:
-                return new CM_TransporterChief();
+                return new CM_TransporterChief(9);
+            case 10:
+                return new CM_TransporterChief(10);
+            case 11:
+                return new CM_TransporterChief(11);
+            case 12:
+                return new CM_TransporterChief(12);
         }
         return null;
     }
