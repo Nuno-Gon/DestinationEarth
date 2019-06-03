@@ -262,6 +262,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(3);
                 }
+                if (game.getState() instanceof AwaitMove) {
+
+                }
             }
         });
         r4.addActionListener(new ActionListener() {

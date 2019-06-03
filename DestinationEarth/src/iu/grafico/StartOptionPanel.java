@@ -56,7 +56,6 @@ public class StartOptionPanel extends JPanel implements Observer {
 
     private void setupLayout() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
         play.setAlignmentX(Component.CENTER_ALIGNMENT);
         load.setAlignmentX(Component.CENTER_ALIGNMENT);
         exit.setAlignmentX(Component.CENTER_ALIGNMENT);

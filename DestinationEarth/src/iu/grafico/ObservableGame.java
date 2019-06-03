@@ -8,6 +8,7 @@ import logicaEstados.*;
 public class ObservableGame extends Observable {
 
     private Game game;
+    private int move_cm;
 
     public ObservableGame() {
         game = new Game();
@@ -117,5 +118,38 @@ public class ObservableGame extends Observable {
 
     int getTInspirationP() {
         return game.getGameData().getInspirationPoints();
+    }
+
+    public int getMove_cm() {
+        return move_cm;
+    }
+
+    public void setMove_cm(int move_cm) {
+        this.move_cm = move_cm;
+        setChanged();
+        notifyObservers();
+    }
+
+    public String getNameCM1() {
+        return game.getGameData().getCrewMemberFirst().getName();
+    }
+
+    public String getNameCM2() {
+        return game.getGameData().getCrewMemberSecond().getName();
+    }
+
+    public void moveCM(int i) {
+        setMove_cm(i);
+        game.move();
+        setChanged();
+        notifyObservers();
+    }
+
+    String getNameMoving() {
+        if (getMove_cm() == 1) {
+            return getNameCM1();
+        } else {
+            return getNameCM2();
+        }
     }
 }
