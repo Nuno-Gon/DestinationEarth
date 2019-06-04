@@ -7,9 +7,9 @@ import iu.grafico.*;
 public class DestinationEarth {
 
     public static void main(String[] args) {
-//        TextUserInterface ui = new TextUserInterface(new Game());
-//        ui.run();
+        TextUserInterface ui = new TextUserInterface(new Game());
+        ui.run();
 
-        DestinationEarthView gui = new DestinationEarthView(new ObservableGame());
+//        DestinationEarthView gui = new DestinationEarthView(new ObservableGame());
     }
 }

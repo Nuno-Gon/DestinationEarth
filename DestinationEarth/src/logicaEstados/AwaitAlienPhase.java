@@ -123,19 +123,21 @@ public class AwaitAlienPhase extends StateAdapter {
                 // alien phase. se for 1 ou  2 o resultado, nao é atacado
                 if(c_cm1 instanceof CM_CommsOfficer ||
                         c_cm2 instanceof CM_CommsOfficer){
-                     gameData.setCurrentDice(gameData.rollDice());
-                     if(gameData.getCurrentDice() == 1){
-                        atacaOfficer = false;
-                        System.out.println("Alien nao pode atacar");
-                     }
+                    gameData.setCurrentDice(gameData.rollDice());
+                    if(gameData.getCurrentDice() == 1){
+                       atacaOfficer = false;
+                    }
                 }
+                System.out.println("CommsOfficer resultado lancamento =" + gameData.getCurrentDice());
                 if(atacaOfficer == true){
                     gameData.setCurrentDice(gameData.rollDice());
                     if (gameData.getCurrentDice() >= 5) {
                         gameData.setHealthTracker(gameData.getHealthTracker() - 1);
-                        System.out.println("Alien atacou officer");
+                        System.out.println("Alien ataca");
                     }
+                    System.out.println("Alien resutado lanacamento =" + gameData.getCurrentDice());
                 }
+                
             }
         });
     }

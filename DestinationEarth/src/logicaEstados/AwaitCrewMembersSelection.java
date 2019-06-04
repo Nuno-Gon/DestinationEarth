@@ -39,11 +39,11 @@ public class AwaitCrewMembersSelection extends StateAdapter {
                 return new CM_RedShirt(5);
             case 6://special done
                 return new CM_MoralOfficer(6,gameData);
-            case 7:
+            case 7://
                 return new CM_CommsOfficer(7);
-            case 8:
+            case 8://
                 return new CM_ScienceOfficer(8);
-            case 9:
+            case 9://
                 return new CM_TransporterChief(9);
             case 10://special done
                 return new CM_SecurityOfficer(10);
