@@ -255,6 +255,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(0);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(1);
+                }
             }
         });
         r2.addActionListener(new ActionListener() {

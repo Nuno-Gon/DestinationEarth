@@ -4,6 +4,7 @@ import java.util.*;
 import javax.swing.*;
 import logicaJogo.*;
 import logicaEstados.*;
+import logicaJogo.crewMembers.CrewMember;
 
 public class ObservableGame extends Observable {
 
@@ -100,11 +101,11 @@ public class ObservableGame extends Observable {
         }
     }
 
-    Object getCrewMemberFirst() {
+    CrewMember getCrewMemberFirst() {
         return game.getGameData().getCrewMemberFirst();
     }
 
-    Object getCrewMemberSecond() {
+    CrewMember getCrewMemberSecond() {
         return game.getGameData().getCrewMemberSecond();
     }
 
@@ -202,5 +203,18 @@ public class ObservableGame extends Observable {
                 moveCMRoom(r, 2);
             }
         });
+    }
+
+    void attack(int i) {
+        CrewMember cr1 = getCrewMemberFirst();
+        CrewMember cr2 = getCrewMemberSecond();
+
+        if (cr1.getCurrentRoom().getNum() == i) {
+            game.attackAlien(cr1, i);
+        }
+        if (cr2.getCurrentRoom().getNum() == i) {
+            game.attackAlien(cr2, i);
+        }
+
     }
 }
