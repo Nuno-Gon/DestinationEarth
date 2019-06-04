@@ -46,11 +46,11 @@ public class AwaitCrewMembersSelection extends StateAdapter {
             case 9:
                 return new CM_TransporterChief(9);
             case 10:
-                return new CM_TransporterChief(10);
+                return new CM_SecurityOfficer(10);
             case 11:
-                return new CM_TransporterChief(11);
+                return new CM_NavigationOfficer(11);
             case 12:
-                return new CM_TransporterChief(12);
+                return new CM_ShuttlePilot(12);
         }
         return null;
     }

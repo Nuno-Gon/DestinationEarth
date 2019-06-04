@@ -170,4 +170,22 @@ public class ObservableGame extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    void noAP() {
+        if (game.getGameData().getActionPoints() == 0) {
+            game.noAP();
+        }
+    }
+
+    boolean getGameOver() {
+        return (game.getGameData().getHealthTracker() == 0 || game.getGameData().getHullTracker() == 0);
+    }
+
+    void gameOver() {
+        game.gameOver();
+    }
+
+    void alienPhase() {
+        game.alienPhase();
+    }
 }

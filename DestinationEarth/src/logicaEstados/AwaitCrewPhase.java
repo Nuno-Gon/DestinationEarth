@@ -6,6 +6,9 @@ public class AwaitCrewPhase extends StateAdapter {
 
     public AwaitCrewPhase(GameData gameData) {
         super(gameData);
+        if (gameData.getActionPoints() == 0) {
+            noAP();
+        }
     }
 
     @Override
@@ -20,6 +23,7 @@ public class AwaitCrewPhase extends StateAdapter {
 
     @Override
     public IStates noAP() {
+
         if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
             return new GameOver(gameData);
         } else {

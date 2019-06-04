@@ -59,6 +59,7 @@ public class Game implements Serializable {
     //AwaitAlienSpawn
     public void alienPlacment() {
         setState(getState().alienPlacment());
+        System.out.println("meteu aliens");
     }
 
     //AwaitCrewPhase
