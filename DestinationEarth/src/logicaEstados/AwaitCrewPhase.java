@@ -7,9 +7,7 @@ public class AwaitCrewPhase extends StateAdapter {
 
     public AwaitCrewPhase(GameData gameData) {
         super(gameData);
-        if (gameData.getActionPoints() == 0) {
-            noAP();
-        }
+
     }
 
     @Override
@@ -19,6 +17,10 @@ public class AwaitCrewPhase extends StateAdapter {
 
     @Override
     public IStates move() {
+        if (gameData.getActionPoints() == 0) {
+            gameData.setActionPoints(5);
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitMove(gameData);
     }
 
@@ -28,8 +30,9 @@ public class AwaitCrewPhase extends StateAdapter {
         if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
             return new GameOver(gameData);
         } else {
-            if(gameData.getCrewMemberFirst()instanceof CM_Commander ||
-                     gameData.getCrewMemberFirst()instanceof CM_Commander){
+            System.out.println("puta");
+            if (gameData.getCrewMemberFirst() instanceof CM_Commander
+                    || gameData.getCrewMemberFirst() instanceof CM_Commander) {
                 gameData.setActionPoints(6);
                 return new AwaitAlienPhase(gameData);
             }
@@ -70,6 +73,7 @@ public class AwaitCrewPhase extends StateAdapter {
                 return new AwaitCrewPhase(gameData);
         }
         gameData.setActionPoints(gameData.getActionPoints() - 1);
+
         return new AwaitCrewPhase(gameData);
     }
 

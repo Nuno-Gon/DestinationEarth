@@ -87,16 +87,14 @@ public class DestinationEarthPanel extends JPanel implements Observer {
         if (game.getState() instanceof AwaitAlienSpawn) {
             game.alienSpawn();
         }
-        if (game.getState() instanceof AwaitCrewPhase) {
-            game.alienSpawn();
+        if (game.getState() instanceof AwaitAlienPhase) {
             game.alienPhase();
-            if (game.getActionPoints() == 0) {
-                game.alienPhase();
-                System.out.println("ya");
-                if (game.getGameOver() == true) {
-                    game.gameOver();
-                }
-            }
+        }
+        if (game.getState() instanceof AwaitRestPhase) {
+//            game.();
+        }
+        if (game.getState() instanceof AwaitCrewPhase) {
+
         }
         validate();
     }

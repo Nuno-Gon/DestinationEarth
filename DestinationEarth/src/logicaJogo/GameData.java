@@ -59,6 +59,7 @@ public class GameData { //Dados do jogo
 
         bridge.setExits(5, conferenceRoom);
         bridge.setExits(8, messHall);
+        sickBay.setExits(6, shuttleBay);
         sickBay.setExits(7, weaponsBay);
         sickBay.setExits(8, messHall);
         brig.setExits(5, conferenceRoom);
@@ -80,6 +81,7 @@ public class GameData { //Dados do jogo
         engineering.setExits(3, brig);
         engineering.setExits(12, hydroponics);
         astrometics.setExits(5, conferenceRoom);
+        astrometics.setExits(6, shuttleBay);
         astrometics.setExits(12, hydroponics);
         holodeck.setExits(4, crewQuarters);
         holodeck.setExits(7, weaponsBay);

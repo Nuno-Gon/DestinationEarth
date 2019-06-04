@@ -304,6 +304,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 moveP.setVisible(false);
+                moved = true;
 //                crewPhaseP.setVisible(true);
                 game.moveCM(2);
             }
