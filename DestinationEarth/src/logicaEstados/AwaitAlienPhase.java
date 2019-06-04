@@ -1,12 +1,16 @@
 package logicaEstados;
 
 import logicaJogo.*;
+import logicaJogo.crewMembers.CM_CommsOfficer;
+import logicaJogo.crewMembers.CrewMember;
 
 public class AwaitAlienPhase extends StateAdapter {
-
+    boolean atacaOfficer = true;
+    
     public AwaitAlienPhase(GameData gameData) {
         super(gameData);
-        if (gameData.getCrewMemberFirst().getNum() == 3 && gameData.getCrewMemberFirst().getCurrentRoom().getNum() == 6) {
+        if (gameData.getCrewMemberFirst().getNum() == 3 
+                && gameData.getCrewMemberFirst().getCurrentRoom().getNum() == 6) {
             gameData.setHullTracker(gameData.getHullTracker() + 1);
         }
     }
@@ -36,7 +40,7 @@ public class AwaitAlienPhase extends StateAdapter {
         checkAlienBattleIV();
 
         gameData.setTurn(gameData.getTurn() + 1);
-
+        System.out.println("AHHH");
         if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
             return new GameOver(gameData);
         }
@@ -108,12 +112,29 @@ public class AwaitAlienPhase extends StateAdapter {
     private void checkAlienBattleIV() {
         Room room_cm1 = gameData.getCrewMemberFirst().getCurrentRoom();
         Room room_cm2 = gameData.getCrewMemberSecond().getCurrentRoom();
-
+        CrewMember c_cm1 = gameData.getCrewMemberFirst();
+        CrewMember c_cm2 = gameData.getCrewMemberSecond();
+        atacaOfficer = true;
+        
         //For each room that contains aliens
         gameData.getShipRoomList().stream().filter((roomList) -> (roomList.getAliens() > 0)).forEachOrdered((Room roomList) -> {
             if (roomList == room_cm1 || roomList == room_cm2) {
-                if (gameData.rollDice() >= 5) {
-                    gameData.setHealthTracker(gameData.getHealthTracker() - 1);
+                //special CM_CommsOfficer: lanca dado antes de
+                // alien phase. se for 1 ou  2 o resultado, nao é atacado
+                if(c_cm1 instanceof CM_CommsOfficer ||
+                        c_cm2 instanceof CM_CommsOfficer){
+                     gameData.setCurrentDice(gameData.rollDice());
+                     if(gameData.getCurrentDice() == 1){
+                        atacaOfficer = false;
+                        System.out.println("Alien nao pode atacar");
+                     }
+                }
+                if(atacaOfficer == true){
+                    gameData.setCurrentDice(gameData.rollDice());
+                    if (gameData.getCurrentDice() >= 5) {
+                        gameData.setHealthTracker(gameData.getHealthTracker() - 1);
+                        System.out.println("Alien atacou officer");
+                    }
                 }
             }
         });
