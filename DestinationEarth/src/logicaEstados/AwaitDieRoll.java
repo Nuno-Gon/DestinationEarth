@@ -31,6 +31,9 @@ public class AwaitDieRoll extends StateAdapter {
         }
 
         gameData.setActionPoints(gameData.getActionPoints() - 1);
+        if (gameData.getActionPoints() == 0) {
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitCrewPhase(gameData);
     }
 

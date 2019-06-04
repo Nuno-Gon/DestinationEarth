@@ -17,6 +17,9 @@ public class AwaitMove extends StateAdapter {
             gameData.getCrewMemberSecond().setCurrentRoom(r);
         }
         gameData.setActionPoints(gameData.getActionPoints() - 1);
+        if (gameData.getActionPoints() == 0) {
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitCrewPhase(gameData);
     }
 }

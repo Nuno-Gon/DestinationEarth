@@ -70,8 +70,8 @@ public class GameOptionsPanel extends JPanel implements Observer {
     }
 
     private void setupComponents() {
-        //Stats CENTER.NORTH
-        setupNorth();
+        //Stats CENTER.SOUTH
+        setupSouth();
 
         //CrewPhase CENTER.CENTER
         setupCenterCrewPhase();
@@ -83,7 +83,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
     }
 
-    private void setupNorth() {
+    private void setupSouth() {
         statsP = new JPanel();
         statsP.setLayout(new GridBagLayout());
         statsP.setOpaque(false);
@@ -316,6 +316,32 @@ public class GameOptionsPanel extends JPanel implements Observer {
                 remove(crewPhaseP);
                 crewPhaseP.setVisible(false);
                 game.getGame().attack();
+            }
+        });
+
+        b_FixHull.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
+                crewPhaseP.setVisible(false);
+
+                if (game.getCrewMemberFirst().getNum() == 3 || game.getCrewMemberSecond().getNum() == 3) {
+                    game.getGame().fixHull();
+                }
+                crewPhaseP.setVisible(true);
+            }
+        });
+
+        b_HealHealth.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
+                crewPhaseP.setVisible(false);
+
+                if (game.getCrewMemberFirst().getNum() == 1 || game.getCrewMemberSecond().getNum() == 1) {
+                    game.getGame().heal();
+                }
+                crewPhaseP.setVisible(true);
             }
         });
     }
