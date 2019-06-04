@@ -40,18 +40,19 @@ public class GameOptionsPanel extends JPanel implements Observer {
         healthBar.setValue(healthTracker);
         hullBar.setValue(hullTracker);
         ipLabel.setText(" " + ipTracker);
+        move_cm1.setText(game.getNameCM1());
+        move_cm2.setText(game.getNameCM2());
 
         if (game.getState() instanceof AwaitCrewPhase) {
 //            add(moveP, BorderLayout.SOUTH);
 //            moveP.setVisible(false);
-            move_cm1.setText(game.getNameCM1());
-            move_cm2.setText(game.getNameCM2());
-            add(crewPhaseP, BorderLayout.SOUTH);
-        } else if (game.getState() instanceof AwaitMove) {
-            remove(crewPhaseP);
-            remove(moveP);
-        } else if (game.getState() instanceof AwaitCrewPhase) {
 
+            add(crewPhaseP, BorderLayout.SOUTH);
+//            remove(moveP);
+
+        } else if (game.getState() instanceof AwaitMove) {
+//            remove(crewPhaseP);
+//            remove(moveP);
         } else {
         }
     }
@@ -280,13 +281,17 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_Move.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
                 crewPhaseP.setVisible(false);
                 add(moveP, BorderLayout.SOUTH);
+                moveP.setVisible(true);
             }
         });
         move_cm1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
+                moveP.setVisible(false);
+                crewPhaseP.setVisible(true);
                 game.moveCM(1);
             }
         });

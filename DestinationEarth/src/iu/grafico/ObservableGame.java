@@ -164,4 +164,10 @@ public class ObservableGame extends Observable {
     public Room getCM2_CurrentRoom() {
         return game.getGameData().getCrewMemberSecond().getCurrentRoom();
     }
+
+    void moveCMRoom(Room r, int i) {
+        game.moveCM(r, i);
+        setChanged();
+        notifyObservers();
+    }
 }

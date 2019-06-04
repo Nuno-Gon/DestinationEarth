@@ -255,6 +255,18 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 game.getGame().getGameData().setActionPoints(game.getGame().getGameData().getActionPoints() - 1);
                 game.getGame().getGameData().setInspirationPoints(game.getGame().getGameData().getInspirationPoints() + 1);
                 game.getGame().getGameData().setHealthTracker(game.getGame().getGameData().getHealthTracker() - 1);
+
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(0);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
+                }
             }
         });
         r2.addActionListener(new ActionListener() {
@@ -264,6 +276,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM1(2);
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(2);
+                }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(1);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
                 }
             }
         });
@@ -279,19 +302,16 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     List<Room> roomList = game.getRooms();
                     Room r = roomList.get(2);
-
                     r.getExits().keySet().forEach((Integer i) -> {
-                        System.out.println(r.getExits().get(i).getName());
                         if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
-                            System.out.println("1- ya é adjecente pode mover");
+                            game.moveCMRoom(r, 1);
                         } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
-                            System.out.println("2- ya é adjecente pode mover");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Escolha um quarto adjecente ao " + game.getNameCM1(), "Escolha um quarto adjecente!",
-                                    JOptionPane.ERROR_MESSAGE);
+                            game.moveCMRoom(r, 2);
                         }
                     });
                 }
+//                        JOptionPane.showMessageDialog(null, "Escolha um quarto adjecente ao " + game.getNameCM1(), "Escolha um quarto adjecente!",
+//                                    JOptionPane.ERROR_MESSAGE);
             }
         });
         r4.addActionListener(new ActionListener() {
@@ -301,6 +321,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM1(4);
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(4);
+                }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(3);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
                 }
             }
         });
@@ -312,6 +343,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(5);
                 }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(4);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
+                }
             }
         });
         r6.addActionListener(new ActionListener() {
@@ -321,6 +363,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM1(6);
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(6);
+                }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(5);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
                 }
             }
         });
@@ -332,6 +385,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(7);
                 }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(6);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
+                }
             }
         });
         r8.addActionListener(new ActionListener() {
@@ -341,6 +405,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM1(8);
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(8);
+                }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(7);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
                 }
             }
         });
@@ -352,6 +427,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(9);
                 }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(8);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
+                }
             }
         });
         r10.addActionListener(new ActionListener() {
@@ -361,6 +447,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM1(10);
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(10);
+                }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(9);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
                 }
             }
         });
@@ -372,6 +469,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(11);
                 }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(10);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
+                }
             }
         });
         r12.addActionListener(new ActionListener() {
@@ -381,6 +489,17 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     game.thirdTokenCM1(12);
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(12);
+                }
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(11);
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 1);
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            game.moveCMRoom(r, 2);
+                        }
+                    });
                 }
             }
         });
