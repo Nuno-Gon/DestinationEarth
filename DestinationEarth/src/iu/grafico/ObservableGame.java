@@ -4,6 +4,7 @@ import java.util.*;
 import javax.swing.*;
 import logicaJogo.*;
 import logicaEstados.*;
+import logicaJogo.crewMembers.CrewMember;
 
 public class ObservableGame extends Observable {
 
@@ -100,11 +101,11 @@ public class ObservableGame extends Observable {
         }
     }
 
-    Object getCrewMemberFirst() {
+    CrewMember getCrewMemberFirst() {
         return game.getGameData().getCrewMemberFirst();
     }
 
-    Object getCrewMemberSecond() {
+    CrewMember getCrewMemberSecond() {
         return game.getGameData().getCrewMemberSecond();
     }
 
@@ -187,5 +188,33 @@ public class ObservableGame extends Observable {
 
     void alienPhase() {
         game.alienPhase();
+    }
+
+    void move(int x) {
+        Room cr1, cr2;
+        cr1 = getCM1_CurrentRoom();
+        cr2 = getCM2_CurrentRoom();
+        List<Room> roomList = getRooms();
+        Room r = roomList.get(0);
+        r.getExits().keySet().forEach((Integer i) -> {
+            if (getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                moveCMRoom(r, 1);
+            } else if (getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                moveCMRoom(r, 2);
+            }
+        });
+    }
+
+    void attack(int i) {
+        CrewMember cr1 = getCrewMemberFirst();
+        CrewMember cr2 = getCrewMemberSecond();
+
+        if (cr1.getCurrentRoom().getNum() == i) {
+            game.attackAlien(cr1, i);
+        }
+        if (cr2.getCurrentRoom().getNum() == i) {
+            game.attackAlien(cr2, i);
+        }
+
     }
 }

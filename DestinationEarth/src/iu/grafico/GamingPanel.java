@@ -69,11 +69,11 @@ public class GamingPanel extends JPanel implements Observer {
         setLayout(new BorderLayout());
 
         //NORTH Journy tracker, FlowLayout com labels
-        add(jtP, BorderLayout.NORTH);
+        add(jtP, BorderLayout.SOUTH);
 
         //SOUTH Dialogue box
         infoP.add(infoL);
-        add(infoP, BorderLayout.SOUTH);
+        add(infoP, BorderLayout.NORTH);
 
         //CENTER Game Options Panel
         add(gameOptionsP, BorderLayout.CENTER);
@@ -107,6 +107,8 @@ public class GamingPanel extends JPanel implements Observer {
             infoL.setText("It's your turn, choose your actions wisely! " + game.getActionPoints() + " AP remaning!");
         } else if (game.getState() instanceof AwaitMove) {
             infoL.setText("Click the Room to where The " + game.getNameMoving() + " is moving!");
+        } else if (game.getState() instanceof AwaitDieRoll) {
+            infoL.setText("Lançamento dos dados!");
         } else {
             System.out.println(game.getState());
             infoL.setText("Continue...");
