@@ -30,7 +30,6 @@ public class AwaitCrewPhase extends StateAdapter {
         if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
             return new GameOver(gameData);
         } else {
-            System.out.println("puta");
             if (gameData.getCrewMemberFirst() instanceof CM_Commander
                     || gameData.getCrewMemberFirst() instanceof CM_Commander) {
                 gameData.setActionPoints(6);
@@ -50,6 +49,9 @@ public class AwaitCrewPhase extends StateAdapter {
     public IStates fixHull() {
         gameData.setHullTracker(gameData.getHullTracker() + 1);
         gameData.setActionPoints(gameData.getActionPoints() - 1);
+        if (gameData.getActionPoints() == 0) {
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitCrewPhase(gameData);
     }
 
@@ -57,6 +59,9 @@ public class AwaitCrewPhase extends StateAdapter {
     public IStates heal() {
         gameData.setHealthTracker(gameData.getHealthTracker() + 1);
         gameData.setActionPoints(gameData.getActionPoints() - 1);
+        if (gameData.getActionPoints() == 0) {
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitCrewPhase(gameData);
     }
 
@@ -73,7 +78,9 @@ public class AwaitCrewPhase extends StateAdapter {
                 return new AwaitCrewPhase(gameData);
         }
         gameData.setActionPoints(gameData.getActionPoints() - 1);
-
+        if (gameData.getActionPoints() == 0) {
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitCrewPhase(gameData);
     }
 
@@ -81,6 +88,9 @@ public class AwaitCrewPhase extends StateAdapter {
     public IStates seal(int x) {
         gameData.getIndexShipRoomList(x).setSealed(true);
         gameData.setActionPoints(gameData.getActionPoints() - 1);
+        if (gameData.getActionPoints() == 0) {
+            return new AwaitAlienPhase(gameData);
+        }
         return new AwaitCrewPhase(gameData);
     }
 
@@ -94,6 +104,9 @@ public class AwaitCrewPhase extends StateAdapter {
             gameData.setInspirationPoints(gameData.getIndexShipRoomList(x).getAliens());
             gameData.getIndexShipRoomList(x).setAliens(0);
             gameData.setActionPoints(gameData.getActionPoints() - 1);
+            if (gameData.getActionPoints() == 0) {
+                return new AwaitAlienPhase(gameData);
+            }
             return new AwaitCrewPhase(gameData);
         }
     }

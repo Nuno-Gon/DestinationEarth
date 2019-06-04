@@ -68,10 +68,10 @@ public class GamingPanel extends JPanel implements Observer {
     private void setupLayout() {
         setLayout(new BorderLayout());
 
-        //NORTH Journy tracker, FlowLayout com labels
+        //SOUTH Journy tracker, FlowLayout com labels
         add(jtP, BorderLayout.SOUTH);
 
-        //SOUTH Dialogue box
+        //NORTH Dialogue box
         infoP.add(infoL);
         add(infoP, BorderLayout.NORTH);
 

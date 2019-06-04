@@ -215,12 +215,15 @@ public class ObservableGame extends Observable {
         CrewMember cr1 = getCrewMemberFirst();
         CrewMember cr2 = getCrewMemberSecond();
 
-        if (cr1.getCurrentRoom().getNum() == i) {
-            game.attackAlien(cr1, i);
+        if (cr1.getCurrentRoom().getAliens() != 0) {
+            if (cr1.getCurrentRoom().getNum() == i) {
+                game.attackAlien(cr1, i);
+            }
         }
-        if (cr2.getCurrentRoom().getNum() == i) {
-            game.attackAlien(cr2, i);
+        if (cr2.getCurrentRoom().getAliens() != 0) {
+            if (cr2.getCurrentRoom().getNum() == i) {
+                game.attackAlien(cr2, i);
+            }
         }
-
     }
 }
