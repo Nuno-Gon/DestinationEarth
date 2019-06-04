@@ -46,7 +46,6 @@ public class PlayerBoardPanel extends JPanel implements Observer {
             cmNum_1 = game.getCMNum(1);
             cmNum_2 = game.getCMNum(2);
         }
-
         if ((game.getState() instanceof AwaitThirdTokenPlacementCM1) == false && (game.getState() instanceof AwaitThirdTokenPlacementCM2) == true) {
             paintCM1 = true;
 

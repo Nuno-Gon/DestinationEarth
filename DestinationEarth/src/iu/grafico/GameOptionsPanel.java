@@ -20,6 +20,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
     private JButton b_Move, b_Attack, b_HealHealth, b_FixHull, b_SettingTrap, b_DetonatePD, b_SealRoom, move_cm1, move_cm2;
     private final Dimension d = new Dimension(300, 30);
     private final Font font = new Font("Arial black", Font.PLAIN, 14);
+    boolean moved = false;
 
     @SuppressWarnings({"OverridableMethodCallInConstructor", "LeakingThisInConstructor"})
     GameOptionsPanel(ObservableGame g) {
@@ -44,6 +45,9 @@ public class GameOptionsPanel extends JPanel implements Observer {
         move_cm2.setText(game.getNameCM2());
 
         if (game.getState() instanceof AwaitCrewPhase) {
+            if (moved == true) {
+                crewPhaseP.setVisible(true);
+            }
 //            add(moveP, BorderLayout.SOUTH);
 //            moveP.setVisible(false);
 
@@ -282,6 +286,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
             public void actionPerformed(ActionEvent ev) {
                 remove(crewPhaseP);
                 crewPhaseP.setVisible(false);
+                moved = false;
                 add(moveP, BorderLayout.SOUTH);
                 moveP.setVisible(true);
             }
@@ -290,7 +295,8 @@ public class GameOptionsPanel extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 moveP.setVisible(false);
-                crewPhaseP.setVisible(true);
+                moved = true;
+//                crewPhaseP.setVisible(true);
                 game.moveCM(1);
             }
         });
