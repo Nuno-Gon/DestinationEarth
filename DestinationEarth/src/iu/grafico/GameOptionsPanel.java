@@ -41,12 +41,11 @@ public class GameOptionsPanel extends JPanel implements Observer {
         hullBar.setValue(hullTracker);
         ipLabel.setText(" " + ipTracker);
 
-        move_cm1.setText(game.getNameCM1());
-        move_cm2.setText(game.getNameCM2());
-
         if (game.getState() instanceof AwaitCrewPhase) {
 //            add(moveP, BorderLayout.SOUTH);
 //            moveP.setVisible(false);
+            move_cm1.setText(game.getNameCM1());
+            move_cm2.setText(game.getNameCM2());
             add(crewPhaseP, BorderLayout.SOUTH);
         } else if (game.getState() instanceof AwaitMove) {
             remove(crewPhaseP);
@@ -161,7 +160,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
         moveP.setLayout(new GridBagLayout());
         moveP.setOpaque(false);
 
-        move_cm1 = new JButton("Move");
+        move_cm1 = new JButton();
         move_cm1.setFont(font);
         move_cm1.setPreferredSize(d);
         move_cm1.setContentAreaFilled(false);
@@ -294,7 +293,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
         move_cm2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                game.moveCM(1);
+                game.moveCM(2);
             }
         });
 

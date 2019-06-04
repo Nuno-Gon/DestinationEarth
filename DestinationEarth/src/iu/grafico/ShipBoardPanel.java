@@ -1,7 +1,15 @@
 package iu.grafico;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.io.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
@@ -21,6 +29,8 @@ public class ShipBoardPanel extends JPanel implements Observer {
     boolean paintCM1 = false, paintCM2 = false, paintAliens = false;
     //Buttons
     JButton r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12;
+    //Current Rooms Crew Members
+    Room cr1, cr2;
 
     @SuppressWarnings({"OverridableMethodCallInConstructor", "LeakingThisInConstructor"})
     ShipBoardPanel(ObservableGame g) {
@@ -34,6 +44,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+
+        cr1 = game.getCM1_CurrentRoom();
+        cr2 = game.getCM2_CurrentRoom();
 //        shipImg = Toolkit.getDefaultToolkit().createImage(Resources.getResourceFile(shipURL));
 //        shipImg = shipImg.getScaledInstance(200, 240, 0);
 //        g.drawImage(shipImg, 0, 0, this);
@@ -262,8 +275,22 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 } else if (game.getState() instanceof AwaitThirdTokenPlacementCM2) {
                     game.thirdTokenCM2(3);
                 }
-                if (game.getState() instanceof AwaitMove) {
 
+                if (game.getState() instanceof AwaitMove) {
+                    List<Room> roomList = game.getRooms();
+                    Room r = roomList.get(2);
+
+                    r.getExits().keySet().forEach((Integer i) -> {
+                        System.out.println(r.getExits().get(i).getName());
+                        if (game.getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                            System.out.println("1- ya é adjecente pode mover");
+                        } else if (game.getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                            System.out.println("2- ya é adjecente pode mover");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Escolha um quarto adjecente ao " + game.getNameCM1(), "Escolha um quarto adjecente!",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    });
                 }
             }
         });

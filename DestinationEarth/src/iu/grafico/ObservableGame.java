@@ -145,11 +145,23 @@ public class ObservableGame extends Observable {
         notifyObservers();
     }
 
-    String getNameMoving() {
+    public String getNameMoving() {
         if (getMove_cm() == 1) {
             return getNameCM1();
         } else {
             return getNameCM2();
         }
+    }
+
+    public List<Room> getRooms() {
+        return game.getGameData().getShipRoomList();
+    }
+
+    public Room getCM1_CurrentRoom() {
+        return game.getGameData().getCrewMemberFirst().getCurrentRoom();
+    }
+
+    public Room getCM2_CurrentRoom() {
+        return game.getGameData().getCrewMemberSecond().getCurrentRoom();
     }
 }
