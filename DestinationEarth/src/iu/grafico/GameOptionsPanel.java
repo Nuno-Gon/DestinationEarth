@@ -298,7 +298,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 moveP.setVisible(false);
-                crewPhaseP.setVisible(true);
+//                crewPhaseP.setVisible(true);
                 game.moveCM(2);
             }
         });
@@ -306,6 +306,8 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_Attack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
+                crewPhaseP.setVisible(false);
                 game.getGame().attack();
             }
         });

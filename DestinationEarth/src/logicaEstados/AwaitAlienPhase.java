@@ -6,6 +6,9 @@ public class AwaitAlienPhase extends StateAdapter {
 
     public AwaitAlienPhase(GameData gameData) {
         super(gameData);
+        if (gameData.getCrewMemberFirst().getNum() == 3 && gameData.getCrewMemberFirst().getCurrentRoom().getNum() == 6) {
+            gameData.setHullTracker(gameData.getHullTracker() + 1);
+        }
     }
 
     /*I. Each alien will move one room towards the closest

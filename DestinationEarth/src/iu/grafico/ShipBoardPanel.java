@@ -271,6 +271,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(1);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(2);
+                }
             }
         });
         r3.addActionListener(new ActionListener() {
@@ -284,6 +287,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
 
                 if (game.getState() instanceof AwaitMove) {
                     game.move(2);
+                }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(3);
                 }
 //                        JOptionPane.showMessageDialog(null, "Escolha um quarto adjecente ao " + game.getNameCM1(), "Escolha um quarto adjecente!",
 //                                    JOptionPane.ERROR_MESSAGE);
@@ -300,6 +306,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(3);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(4);
+                }
             }
         });
         r5.addActionListener(new ActionListener() {
@@ -312,6 +321,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitMove) {
                     game.move(4);
+                }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(5);
                 }
             }
         });
@@ -326,6 +338,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(5);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(6);
+                }
             }
         });
         r7.addActionListener(new ActionListener() {
@@ -338,6 +353,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitMove) {
                     game.move(6);
+                }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(7);
                 }
             }
         });
@@ -352,6 +370,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(7);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(8);
+                }
             }
         });
         r9.addActionListener(new ActionListener() {
@@ -364,6 +385,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitMove) {
                     game.move(8);
+                }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(9);
                 }
             }
         });
@@ -378,6 +402,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(9);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(10);
+                }
             }
         });
         r11.addActionListener(new ActionListener() {
@@ -391,6 +418,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitMove) {
                     game.move(10);
                 }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(11);
+                }
             }
         });
         r12.addActionListener(new ActionListener() {
@@ -403,6 +433,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitMove) {
                     game.move(11);
+                }
+                if (game.getState() instanceof AwaitDieRoll) {
+                    game.attack(12);
                 }
             }
         });

@@ -194,12 +194,16 @@ public class ObservableGame extends Observable {
         Room cr1, cr2;
         cr1 = getCM1_CurrentRoom();
         cr2 = getCM2_CurrentRoom();
-        List<Room> roomList = getRooms();
-        Room r = roomList.get(0);
+        List<Room> roomList = game.getGameData().getShipRoomList();
+        Room r = roomList.get(x);
         r.getExits().keySet().forEach((Integer i) -> {
+            System.out.println("cr1 " + cr1.getName());
+            System.out.println("Exits-> " + r.getExits().get(i).getName());
             if (getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                System.out.println("kek1");
                 moveCMRoom(r, 1);
             } else if (getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                System.out.println("kek2");
                 moveCMRoom(r, 2);
             }
         });

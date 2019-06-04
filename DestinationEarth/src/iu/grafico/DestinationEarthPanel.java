@@ -83,22 +83,21 @@ public class DestinationEarthPanel extends JPanel implements Observer {
             add(shipBPanel, BorderLayout.WEST);
             add(gamingPanel, BorderLayout.CENTER);
             add(playerBPanel, BorderLayout.EAST);
-            if (game.getState() instanceof AwaitAlienSpawn) {
-                game.alienSpawn();
-            }
-            if (game.getState() instanceof AwaitCrewPhase) {
-                game.alienSpawn();
+        }
+        if (game.getState() instanceof AwaitAlienSpawn) {
+            game.alienSpawn();
+        }
+        if (game.getState() instanceof AwaitCrewPhase) {
+            game.alienSpawn();
+            game.alienPhase();
+            if (game.getActionPoints() == 0) {
                 game.alienPhase();
-                if (game.getActionPoints() == 0) {
-                    game.alienPhase();
-                    System.out.println("ya");
-                    if (game.getGameOver() == true) {
-                        game.gameOver();
-                    }
+                System.out.println("ya");
+                if (game.getGameOver() == true) {
+                    game.gameOver();
                 }
             }
         }
-        System.out.println(game.getState());
         validate();
     }
 
