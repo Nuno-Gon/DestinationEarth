@@ -108,7 +108,9 @@ public class GamingPanel extends JPanel implements Observer {
         } else if (game.getState() instanceof AwaitMove) {
             infoL.setText("Click the Room to where The " + game.getNameMoving() + " is moving!");
         } else if (game.getState() instanceof AwaitDieRoll) {
-            infoL.setText("Lançamento dos dados!");
+            infoL.setText("Attacking..........");
+        } else if (game.getState() instanceof AwaitAlienPhase) {
+            infoL.setText("Attacking..........");
         } else {
             System.out.println(game.getState());
             infoL.setText("Continue...");

@@ -176,6 +176,8 @@ public class ObservableGame extends Observable {
         if (game.getGameData().getActionPoints() == 0) {
             game.noAP();
         }
+        setChanged();
+        notifyObservers();
     }
 
     boolean getGameOver() {
@@ -184,10 +186,14 @@ public class ObservableGame extends Observable {
 
     void gameOver() {
         game.gameOver();
+        setChanged();
+        notifyObservers();
     }
 
     void alienPhase() {
         game.alienPhase();
+        setChanged();
+        notifyObservers();
     }
 
     void move(int x) {
