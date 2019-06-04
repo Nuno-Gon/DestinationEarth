@@ -1,6 +1,7 @@
 package logicaEstados;
 
 import logicaJogo.*;
+import logicaJogo.crewMembers.CM_Commander;
 
 public class AwaitCrewPhase extends StateAdapter {
 
@@ -27,6 +28,11 @@ public class AwaitCrewPhase extends StateAdapter {
         if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
             return new GameOver(gameData);
         } else {
+            if(gameData.getCrewMemberFirst()instanceof CM_Commander ||
+                     gameData.getCrewMemberFirst()instanceof CM_Commander){
+                gameData.setActionPoints(6);
+                return new AwaitAlienPhase(gameData);
+            }
             gameData.setActionPoints(5);
             return new AwaitAlienPhase(gameData);
         }

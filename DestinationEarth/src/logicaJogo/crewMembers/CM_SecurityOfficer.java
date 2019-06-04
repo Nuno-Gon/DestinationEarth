@@ -8,8 +8,8 @@ public class CM_SecurityOfficer extends CrewMember {
     public CM_SecurityOfficer(int n) {
         super(n);
         infoSpecial = "\nStarts with 2D6 for attack.\n";
-        setAttack(2);
         name = "Security Officer";
+        this.attack = 2;
     }
 
     @Override

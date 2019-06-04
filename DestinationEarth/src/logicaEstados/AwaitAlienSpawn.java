@@ -1,6 +1,7 @@
 package logicaEstados;
 
 import logicaJogo.*;
+import logicaJogo.crewMembers.*;
 
 public class AwaitAlienSpawn extends StateAdapter {
 
@@ -15,6 +16,12 @@ public class AwaitAlienSpawn extends StateAdapter {
         /*if (!ss.equals("R")) {
             return new AwaitRestPhase(gameData);
         }*/
+        
+        if(gameData.getCrewMemberFirst()instanceof CM_Commander ||
+                     gameData.getCrewMemberFirst()instanceof CM_Commander){
+                gameData.setActionPoints(6);
+                return new AwaitCrewPhase(gameData);
+            }
         gameData.setActionPoints(5);
         return new AwaitCrewPhase(gameData);
     }

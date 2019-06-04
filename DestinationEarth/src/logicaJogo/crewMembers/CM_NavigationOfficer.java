@@ -8,6 +8,7 @@ public class CM_NavigationOfficer extends CrewMember {
         super(n);
         infoSpecial = "\nCan move 2 rooms for 1 Action Point.\n";
         name = "Navigation Officer";
+        this.movement = 2;
     }
 
     @Override

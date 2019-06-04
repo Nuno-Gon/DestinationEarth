@@ -27,30 +27,30 @@ public class AwaitCrewMembersSelection extends StateAdapter {
             x = (int) (Math.random() * 9) + 1;
         }
         switch (x) {
-            case 1:
+            case 1://special done
                 return new CM_Doctor(1);
             case 2:
-                return new CM_Captain(2);
+                return new CM_Captain(2,gameData);
             case 3:
                 return new CM_Engineer(3);
-            case 4:
+            case 4://special done
                 return new CM_Commander(4);
             case 5:
                 return new CM_RedShirt(5);
-            case 6:
-                return new CM_MoralOfficer(6);
+            case 6://special
+                return new CM_MoralOfficer(6,gameData);
             case 7:
                 return new CM_CommsOfficer(7);
             case 8:
                 return new CM_ScienceOfficer(8);
             case 9:
                 return new CM_TransporterChief(9);
-            case 10:
+            case 10://special done
                 return new CM_SecurityOfficer(10);
-            case 11:
+            case 11://special done
                 return new CM_NavigationOfficer(11);
-            case 12:
-                return new CM_ShuttlePilot(12);
+            case 12://special done
+                return new CM_ShuttlePilot(12,gameData);
         }
         return null;
     }

@@ -135,13 +135,16 @@ public class TextUserInterface {
         System.out.println("\t7 - Comm's Officer");
         System.out.println("\t8 - Science Officer");
         System.out.println("\t9 - Transporter Chief");
+        System.out.println("\t10 - Security Officer");
+        System.out.println("\t11 - Navigation Officer");
+        System.out.println("\t12 - Shuttle Pilot");
         System.out.print("\t>>");
 
         int x = sc.nextInt();
         //show special and confirm selection
         System.out.println();
         System.out.print("Special:");
-        showSpecial(x);
+        //showSpecial(x);
         System.out.println();
         System.out.println("Confirm Crew Member (Y/N)");
         System.out.print(">>");
@@ -154,47 +157,59 @@ public class TextUserInterface {
         }
     }
 
-    private void showSpecial(int x) {
-        CrewMember k;
-        switch (x) {
-            case 1:
-                k = new CM_Doctor(1);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 2:
-                k = new CM_Captain(2);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 3:
-                k = new CM_Engineer(3);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 4:
-                k = new CM_Commander(4);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 5:
-                k = new CM_RedShirt(5);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 6:
-                k = new CM_MoralOfficer(6);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 7:
-                k = new CM_CommsOfficer(7);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 8:
-                k = new CM_ScienceOfficer(8);
-                System.out.println(k.getInfoSpecial());
-                break;
-            case 9:
-                k = new CM_TransporterChief(9);
-                System.out.println(k.getInfoSpecial());
-                break;
-        }
-    }
+//    private void showSpecial(int x) {
+//        CrewMember k;
+//        switch (x) {
+//            case 1:
+//                k = new CM_Doctor(1);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 2:
+//                k = new CM_Captain(2,g.getGameData());
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 3:
+//                k = new CM_Engineer(3);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 4:
+//                k = new CM_Commander(4);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 5:
+//                k = new CM_RedShirt(5);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 6:
+//                k = new CM_MoralOfficer(6);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 7:
+//                k = new CM_CommsOfficer(7);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 8:
+//                k = new CM_ScienceOfficer(8);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 9:
+//                k = new CM_TransporterChief(9);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 10:
+//                k = new CM_SecurityOfficer(10);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 11:
+//                k = new CM_NavigationOfficer(11);
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//            case 12:
+//                k = new CM_ShuttlePilot(12,g.getGameData());
+//                System.out.println(k.getInfoSpecial());
+//                break;
+//        }
+//    }
 
     private void iuAwaitThirdTokenPlacementCM1() {
         System.out.println();
@@ -386,7 +401,9 @@ public class TextUserInterface {
                     break;
             }
             System.out.println("Dice value: " + g.getGameData().getCurrentDice());
-            if (g.getGameData().getCurrentDice() >= 5) {
+            System.out.println("DiceAttack value: " + g.getGameData().getAddToAttackDie());
+            int kek = g.getGameData().getCurrentDice() + g.getGameData().getAddToAttackDie(); //Upgrade add to dice
+            if (kek >= 5) {
                 System.out.println("Matou 1 Alien!");
             }
         }

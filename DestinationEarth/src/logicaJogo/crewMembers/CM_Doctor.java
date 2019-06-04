@@ -12,7 +12,7 @@ public class CM_Doctor extends CrewMember {
 
     @Override
     public void special(GameData gameData) {
-
+        
     }
 
 }

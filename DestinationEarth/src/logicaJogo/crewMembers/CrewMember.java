@@ -5,8 +5,8 @@ import logicaJogo.*;
 public abstract class CrewMember {
 
     protected String name;
-    private int movement;
-    private int attack;
+    protected int movement;
+    protected int attack;
     private int num;
     protected String infoSpecial;
     private Room currentRoom;

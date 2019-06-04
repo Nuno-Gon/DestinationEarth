@@ -3,7 +3,6 @@ package logicaJogo.crewMembers;
 import logicaJogo.GameData;
 
 public class CM_Commander extends CrewMember {
-
     public CM_Commander(int n) {
         super(n);
         infoSpecial = "\n6 Action Points per turn instead of 5.\n";
@@ -12,6 +11,6 @@ public class CM_Commander extends CrewMember {
 
     @Override
     public void special(GameData gameData) {
-
+        
     }
 }
