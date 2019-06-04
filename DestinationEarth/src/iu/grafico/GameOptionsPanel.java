@@ -47,7 +47,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
 //            add(moveP, BorderLayout.SOUTH);
 //            moveP.setVisible(false);
 
-            add(crewPhaseP, BorderLayout.SOUTH);
+            add(crewPhaseP, BorderLayout.CENTER);
 //            remove(moveP);
 
         } else if (game.getState() instanceof AwaitMove) {
@@ -61,7 +61,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
         setLayout(new BorderLayout());
 
         //Stats Panel ( HP, Hull, Inspiration Ponints)
-        add(statsP, BorderLayout.NORTH);
+        add(statsP, BorderLayout.SOUTH);
 
     }
 
@@ -115,45 +115,44 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
         c = new GridBagConstraints();
         c.gridx = 0;
-        c.gridy = 0;
+        c.gridy = 1;
         c.weightx = 1;
         c.anchor = GridBagConstraints.WEST;
         statsP.add(healthLabel, c);
         c = new GridBagConstraints();
         c.gridx = 1;
-        c.gridy = 0;
+        c.gridy = 1;
         c.weightx = 25;
         c.anchor = GridBagConstraints.WEST;
         statsP.add(healthBar, c);
 
         c = new GridBagConstraints();
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 2;
         c.weightx = 1;
         c.anchor = GridBagConstraints.WEST;
         statsP.add(hullLabel, c);
         c = new GridBagConstraints();
         c.gridx = 1;
-        c.gridy = 1;
+        c.gridy = 2;
         c.weightx = 25;
         c.anchor = GridBagConstraints.WEST;
         statsP.add(hullBar, c);
 
         c = new GridBagConstraints();
-        c.gridx = 1;
-        c.gridy = 2;
-        c.weightx = 1;
-        c.anchor = GridBagConstraints.WEST;
-        ipLabel.setText(" " + ipTracker);
-        statsP.add(ipLabel, c);
-
-        c = new GridBagConstraints();
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 0;
         c.weightx = 1;
         c.anchor = GridBagConstraints.WEST;
         ipLTracker.setText("Inspiration Points:");
         statsP.add(ipLTracker, c);
+        c = new GridBagConstraints();
+        c.gridx = 1;
+        c.gridy = 0;
+        c.weightx = 1;
+        c.anchor = GridBagConstraints.WEST;
+        ipLabel.setText(" " + ipTracker);
+        statsP.add(ipLabel, c);
     }
 
     private void setupCenterMove() {
@@ -307,6 +306,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_Attack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
+                game.getGame().attack();
             }
         });
     }

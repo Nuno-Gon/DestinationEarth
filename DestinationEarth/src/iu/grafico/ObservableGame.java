@@ -188,4 +188,19 @@ public class ObservableGame extends Observable {
     void alienPhase() {
         game.alienPhase();
     }
+
+    void move(int x) {
+        Room cr1, cr2;
+        cr1 = getCM1_CurrentRoom();
+        cr2 = getCM2_CurrentRoom();
+        List<Room> roomList = getRooms();
+        Room r = roomList.get(0);
+        r.getExits().keySet().forEach((Integer i) -> {
+            if (getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                moveCMRoom(r, 1);
+            } else if (getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                moveCMRoom(r, 2);
+            }
+        });
+    }
 }
