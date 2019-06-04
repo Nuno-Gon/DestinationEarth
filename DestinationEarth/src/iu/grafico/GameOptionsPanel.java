@@ -298,6 +298,8 @@ public class GameOptionsPanel extends JPanel implements Observer {
         move_cm2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
+                moveP.setVisible(false);
+                crewPhaseP.setVisible(true);
                 game.moveCM(2);
             }
         });
