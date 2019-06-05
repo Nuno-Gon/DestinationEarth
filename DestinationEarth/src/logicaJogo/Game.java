@@ -85,6 +85,10 @@ public class Game implements Serializable {
     public void heal() {
         setState(getState().heal());
     }
+    
+    public void healSpecial() {
+        setState(getState().healSpecial());
+    }
 
     public void trap(int trap, int room) {
         setState(getState().trap(trap, room));

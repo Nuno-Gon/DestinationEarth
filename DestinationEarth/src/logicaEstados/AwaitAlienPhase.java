@@ -40,7 +40,6 @@ public class AwaitAlienPhase extends StateAdapter {
         checkAlienBattleIV();
 
         gameData.setTurn(gameData.getTurn() + 1);
-        System.out.println("AHHH");
         if (gameData.getHealthTracker() == 0 || gameData.getHullTracker() == 0) {
             return new GameOver(gameData);
         }
@@ -121,21 +120,26 @@ public class AwaitAlienPhase extends StateAdapter {
             if (roomList == room_cm1 || roomList == room_cm2) {
                 //special CM_CommsOfficer: lanca dado antes de
                 // alien phase. se for 1 ou  2 o resultado, nao é atacado
-                if(c_cm1 instanceof CM_CommsOfficer ||
-                        c_cm2 instanceof CM_CommsOfficer){
+                if(c_cm1 instanceof CM_CommsOfficer){
                     gameData.setCurrentDice(gameData.rollDice());
-                    if(gameData.getCurrentDice() == 1){
+                    if(gameData.getCurrentDice() == 1 ||gameData.getCurrentDice() == 2){
                        atacaOfficer = false;
                     }
                 }
-                System.out.println("CommsOfficer resultado lancamento =" + gameData.getCurrentDice());
+                if(c_cm2 instanceof CM_CommsOfficer){
+                    gameData.setCurrentDice(gameData.rollDice());
+                    if(gameData.getCurrentDice() == 1 || gameData.getCurrentDice() == 2){
+                       atacaOfficer = false;
+                    }
+                }
+                //System.out.println("CommsOfficer resultado lancamento =" + gameData.getCurrentDice());
                 if(atacaOfficer == true){
                     gameData.setCurrentDice(gameData.rollDice());
                     if (gameData.getCurrentDice() >= 5) {
                         gameData.setHealthTracker(gameData.getHealthTracker() - 1);
-                        System.out.println("Alien ataca");
+                        //System.out.println("Alien ataca");
                     }
-                    System.out.println("Alien resutado lanacamento =" + gameData.getCurrentDice());
+                    //System.out.println("Alien resutado lanacamento =" + gameData.getCurrentDice());
                 }
                 
             }

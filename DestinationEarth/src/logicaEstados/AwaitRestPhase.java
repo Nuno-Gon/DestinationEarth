@@ -36,6 +36,13 @@ public class AwaitRestPhase extends StateAdapter {
         gameData.setHealthTracker(gameData.getHealthTracker() + 1);
         return this;
     }
+    
+    @Override
+    public IStates healSpecial() {
+        gameData.setInspirationPoints(gameData.getInspirationPoints() - 1);
+        gameData.setHealthTracker(gameData.getHealthTracker() + 2);
+        return this;
+    }
 
     @Override
     public IStates fixHull() {

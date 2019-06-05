@@ -36,6 +36,8 @@ public interface IStates {
     public IStates fixHull();
 
     public IStates heal();
+    
+    public IStates healSpecial();
 
     public IStates seal(int x);
 

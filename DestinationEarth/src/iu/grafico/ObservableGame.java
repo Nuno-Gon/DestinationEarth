@@ -4,6 +4,7 @@ import java.util.*;
 import javax.swing.*;
 import logicaJogo.*;
 import logicaEstados.*;
+import logicaJogo.crewMembers.CM_ScienceOfficer;
 import logicaJogo.crewMembers.CrewMember;
 
 public class ObservableGame extends Observable {
@@ -217,11 +218,27 @@ public class ObservableGame extends Observable {
         CrewMember cr1 = getCrewMemberFirst();
         CrewMember cr2 = getCrewMemberSecond();
 
+        //Special ScienceOfficer
+        List<Room> roomList = game.getGameData().getShipRoomList();
+        Room r = roomList.get(i);
+        
+        if(cr1 instanceof CM_ScienceOfficer || cr2 instanceof CM_ScienceOfficer ){
+            r.getExits().keySet().forEach((Integer j) -> {
+                if (cr1.getCurrentRoom() == r.getExits().get(i)) {
+                    game.attackAlien(cr1, i);
+                } else if (cr2.getCurrentRoom() == r.getExits().get(i)) {
+                    game.attackAlien(cr2, i);
+                }
+            });
+        }
+        
+        //CM1
         if (cr1.getCurrentRoom().getAliens() != 0) {
             if (cr1.getCurrentRoom().getNum() == i) {
                 game.attackAlien(cr1, i);
             }
         }
+        //CM2
         if (cr2.getCurrentRoom().getAliens() != 0) {
             if (cr2.getCurrentRoom().getNum() == i) {
                 game.attackAlien(cr2, i);

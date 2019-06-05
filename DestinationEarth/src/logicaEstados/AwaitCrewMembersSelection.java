@@ -29,17 +29,17 @@ public class AwaitCrewMembersSelection extends StateAdapter {
         switch (x) {
             case 1://special done
                 return new CM_Doctor(1);
-            case 2:
+            case 2://
                 return new CM_Captain(2,gameData);
             case 3://special done
                 return new CM_Engineer(3);
             case 4://special done
                 return new CM_Commander(4);
-            case 5:
+            case 5://
                 return new CM_RedShirt(5);
             case 6://special done
                 return new CM_MoralOfficer(6,gameData);
-            case 7://
+            case 7://special done
                 return new CM_CommsOfficer(7);
             case 8://
                 return new CM_ScienceOfficer(8);

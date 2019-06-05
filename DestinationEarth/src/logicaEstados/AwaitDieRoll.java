@@ -12,6 +12,9 @@ public class AwaitDieRoll extends StateAdapter {
     @Override
     public IStates attackAlien(CrewMember cm, int x) {
         int dice = 0;
+        String name = "Science Officer";
+        
+        
         //cm->Crew Member que vai atacar, x->se for 420 é random senao é o valor que foi introduzido
         if (x == 420) { //If random, roll attack dice and set value on dice
             for (int i = 0; i < cm.getAttack(); i++) {
