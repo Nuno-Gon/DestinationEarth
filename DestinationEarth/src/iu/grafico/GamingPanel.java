@@ -18,6 +18,7 @@ public class GamingPanel extends JPanel implements Observer {
 
     JPanel jtP, infoP;
     JLabel x, infoL;
+    private Component diceShow;
 
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     GamingPanel(ObservableGame g) {
@@ -62,7 +63,7 @@ public class GamingPanel extends JPanel implements Observer {
         //CENTER PANEL
         gameOptionsP = new GameOptionsPanel(game);
         gameOptionsP.setOpaque(false);
-
+        
     }
 
     private void setupLayout() {
@@ -77,6 +78,7 @@ public class GamingPanel extends JPanel implements Observer {
 
         //CENTER Game Options Panel
         add(gameOptionsP, BorderLayout.CENTER);
+        add(diceShow,BorderLayout.EAST);
     }
 
     @Override
