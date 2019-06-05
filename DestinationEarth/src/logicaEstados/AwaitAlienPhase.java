@@ -1,15 +1,17 @@
 package logicaEstados;
 
+import javax.swing.JOptionPane;
 import logicaJogo.*;
 import logicaJogo.crewMembers.CM_CommsOfficer;
 import logicaJogo.crewMembers.CrewMember;
 
 public class AwaitAlienPhase extends StateAdapter {
+
     boolean atacaOfficer = true;
-    
+
     public AwaitAlienPhase(GameData gameData) {
         super(gameData);
-        if (gameData.getCrewMemberFirst().getNum() == 3 
+        if (gameData.getCrewMemberFirst().getNum() == 3
                 && gameData.getCrewMemberFirst().getCurrentRoom().getNum() == 6) {
             gameData.setHullTracker(gameData.getHullTracker() + 1);
         }
@@ -47,6 +49,12 @@ public class AwaitAlienPhase extends StateAdapter {
         switch (gameData.getJourneyTrackerIndex(gameData.getTurn())) {
             case "R":
                 restPhase();
+                if (gameData.getInspirationPoints() == 0) {
+                    JOptionPane.showMessageDialog(null,
+                            "You have 0 Inspiration Points...", "Rest Phase Skipped!",
+                            JOptionPane.WARNING_MESSAGE);
+                    return new AwaitAlienSpawn(gameData);
+                }
                 return new AwaitRestPhase(gameData);
             case "E":
                 return new Victory(gameData);
@@ -114,26 +122,26 @@ public class AwaitAlienPhase extends StateAdapter {
         CrewMember c_cm1 = gameData.getCrewMemberFirst();
         CrewMember c_cm2 = gameData.getCrewMemberSecond();
         atacaOfficer = true;
-        
+
         //For each room that contains aliens
         gameData.getShipRoomList().stream().filter((roomList) -> (roomList.getAliens() > 0)).forEachOrdered((Room roomList) -> {
             if (roomList == room_cm1 || roomList == room_cm2) {
                 //special CM_CommsOfficer: lanca dado antes de
                 // alien phase. se for 1 ou  2 o resultado, nao é atacado
-                if(c_cm1 instanceof CM_CommsOfficer){
+                if (c_cm1 instanceof CM_CommsOfficer) {
                     gameData.setCurrentDice(gameData.rollDice());
-                    if(gameData.getCurrentDice() == 1 ||gameData.getCurrentDice() == 2){
-                       atacaOfficer = false;
+                    if (gameData.getCurrentDice() == 1 || gameData.getCurrentDice() == 2) {
+                        atacaOfficer = false;
                     }
                 }
-                if(c_cm2 instanceof CM_CommsOfficer){
+                if (c_cm2 instanceof CM_CommsOfficer) {
                     gameData.setCurrentDice(gameData.rollDice());
-                    if(gameData.getCurrentDice() == 1 || gameData.getCurrentDice() == 2){
-                       atacaOfficer = false;
+                    if (gameData.getCurrentDice() == 1 || gameData.getCurrentDice() == 2) {
+                        atacaOfficer = false;
                     }
                 }
                 //System.out.println("CommsOfficer resultado lancamento =" + gameData.getCurrentDice());
-                if(atacaOfficer == true){
+                if (atacaOfficer == true) {
                     gameData.setCurrentDice(gameData.rollDice());
                     if (gameData.getCurrentDice() >= 5) {
                         gameData.setHealthTracker(gameData.getHealthTracker() - 1);
@@ -141,7 +149,7 @@ public class AwaitAlienPhase extends StateAdapter {
                     }
                     //System.out.println("Alien resutado lanacamento =" + gameData.getCurrentDice());
                 }
-                
+
             }
         });
     }
