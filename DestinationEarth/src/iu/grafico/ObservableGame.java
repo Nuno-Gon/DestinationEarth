@@ -220,18 +220,18 @@ public class ObservableGame extends Observable {
 
         //Special ScienceOfficer
         List<Room> roomList = game.getGameData().getShipRoomList();
-        Room r = roomList.get(i);
-        
-        if(cr1 instanceof CM_ScienceOfficer || cr2 instanceof CM_ScienceOfficer ){
+        Room r = roomList.get(i - 1);
+
+        if (cr1 instanceof CM_ScienceOfficer || cr2 instanceof CM_ScienceOfficer) {
             r.getExits().keySet().forEach((Integer j) -> {
-                if (cr1.getCurrentRoom() == r.getExits().get(i)) {
+                if (cr1 instanceof CM_ScienceOfficer && cr1.getCurrentRoom() == r.getExits().get(j)) {
                     game.attackAlien(cr1, i);
-                } else if (cr2.getCurrentRoom() == r.getExits().get(i)) {
+                }
+                if (cr2 instanceof CM_ScienceOfficer && cr2.getCurrentRoom() == r.getExits().get(j)) {
                     game.attackAlien(cr2, i);
                 }
             });
         }
-        
         //CM1
         if (cr1.getCurrentRoom().getAliens() != 0) {
             if (cr1.getCurrentRoom().getNum() == i) {
