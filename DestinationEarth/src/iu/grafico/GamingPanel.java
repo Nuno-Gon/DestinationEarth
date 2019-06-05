@@ -111,6 +111,16 @@ public class GamingPanel extends JPanel implements Observer {
             infoL.setText("Attacking..........");
         } else if (game.getState() instanceof AwaitRestPhase) {
             infoL.setText("Resting Phase: Use your Inspiration Points for Upgrades!");
+        } else if (game.getState() instanceof GameOver) {
+            if (game.getGame().getGameData().getHealthTracker() == 0) {
+                JOptionPane.showMessageDialog(null,
+                        "You lost all HEALTH!", "GAME OVER!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "You lost the HULL!", "GAME OVER!",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             System.out.println(game.getState());
             infoL.setText("Continue...");

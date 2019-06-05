@@ -158,6 +158,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
     }
 
     private void setupCenterMove() {
+        d = new Dimension(300, 30);
         moveP = new JPanel();
         moveP.setLayout(new GridBagLayout());
         moveP.setOpaque(false);
@@ -177,10 +178,11 @@ public class GameOptionsPanel extends JPanel implements Observer {
         c = new GridBagConstraints();
         c.insets = new Insets(10, 0, 10, 200);
         c.gridy = 0;
+        c.fill = GridBagConstraints.HORIZONTAL;
         moveP.add(move_cm1, c);
 
         c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 170, 200);
+        c.insets = new Insets(10, 0, 100, 200);
         c.gridy = 1;
         moveP.add(move_cm2, c);
     }
@@ -263,7 +265,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
         crewPhaseP.add(b_DetonatePD, c);
 
         c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 170, 200);
+        c.insets = new Insets(10, 0, 100, 200);
         c.gridy = 6;
         crewPhaseP.add(b_SealRoom, c);
     }
@@ -285,7 +287,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
                 remove(crewPhaseP);
                 crewPhaseP.setVisible(false);
                 moved = false;
-                add(moveP, BorderLayout.SOUTH);
+                add(moveP, BorderLayout.CENTER);
                 moveP.setVisible(true);
             }
         });
