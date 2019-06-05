@@ -36,7 +36,7 @@ public interface IStates {
     public IStates fixHull();
 
     public IStates heal();
-    
+
     public IStates healSpecial();
 
     public IStates seal(int x);
@@ -44,6 +44,8 @@ public interface IStates {
     public IStates trap(int trap, int room);
 
     public IStates detonatePD(int x);
+
+    public IStates sealRoom();
 
     //AwaitMove
     public IStates moveCM(Room r, int cm);

@@ -3,9 +3,9 @@ package logicaEstados;
 import logicaJogo.*;
 import logicaJogo.crewMembers.CM_Commander;
 
-public class AwaitCrewPhase extends StateAdapter {
+public class AwaitTrap extends StateAdapter {
 
-    public AwaitCrewPhase(GameData gameData) {
+    public AwaitTrap(GameData gameData) {
         super(gameData);
 
     }
@@ -92,11 +92,6 @@ public class AwaitCrewPhase extends StateAdapter {
             return new AwaitAlienPhase(gameData);
         }
         return new AwaitCrewPhase(gameData);
-    }
-
-    @Override
-    public IStates sealRoom() {
-        return new AwaitSeal(gameData);
     }
 
     @Override

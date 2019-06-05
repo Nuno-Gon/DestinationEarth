@@ -256,5 +256,13 @@ public class ObservableGame extends Observable {
                 game.attackAlien(cr2, i);
             }
         }
+        setChanged();
+        notifyObservers();
+    }
+
+    void sealRoom(int x) {
+        game.seal(x);
+        setChanged();
+        notifyObservers();
     }
 }

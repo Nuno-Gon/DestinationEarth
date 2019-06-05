@@ -226,6 +226,73 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
             }
         }
+        for (Room roomList : game.getGame().getGameData().getShipRoomList()) {
+            g2d.setColor(Color.BLACK);
+            switch (roomList.getNum()) {
+                case 1:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(210, 95, 30, 30);
+                    }
+                    break;
+                case 2:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(250, 430, 30, 30);
+                    }
+                    break;
+                case 3:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(85, 200, 30, 30);
+                    }
+                    break;
+                case 4:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(230, 220, 30, 30);
+                    }
+                    break;
+                case 5:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(170, 185, 30, 30);
+                    }
+                    break;
+                case 6:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(210, 600, 30, 30);
+                    }
+                    break;
+                case 7:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(330, 460, 30, 30);
+                    }
+                    break;
+                case 8:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(250, 250, 30, 30);
+                    }
+                    break;
+                case 9:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(85, 330, 30, 30);
+                    }
+                    break;
+                case 10:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(170, 440, 30, 30);
+                    }
+                    break;
+                case 11:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(340, 340, 30, 30);
+                    }
+                    break;
+                case 12:
+                    if (roomList.isSealed()) {
+                        g2d.fillRect(90, 460, 30, 30);
+                    }
+                    break;
+
+            }
+
+        }
     }
 
     @Override
@@ -252,6 +319,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(1);
+                }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(1);
                 }
             }
         });

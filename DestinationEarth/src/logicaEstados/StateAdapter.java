@@ -17,6 +17,11 @@ public class StateAdapter implements IStates {
     }
 
     @Override
+    public IStates sealRoom() {
+        return this;
+    }
+
+    @Override
     public IStates selectCM(int x) {
         return this;
     }
@@ -105,12 +110,11 @@ public class StateAdapter implements IStates {
     public IStates heal() {
         return this;
     }
-    
+
     @Override
     public IStates healSpecial() {
         return this;
     }
-    
 
     @Override
     public IStates alienPhase() {

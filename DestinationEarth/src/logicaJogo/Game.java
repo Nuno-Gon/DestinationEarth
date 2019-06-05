@@ -85,7 +85,7 @@ public class Game implements Serializable {
     public void heal() {
         setState(getState().heal());
     }
-    
+
     public void healSpecial() {
         setState(getState().healSpecial());
     }
@@ -96,6 +96,10 @@ public class Game implements Serializable {
 
     public void seal(int x) {
         setState(getState().seal(x));
+    }
+
+    public void sealRoom() {
+        setState(getState().sealRoom());
     }
 
     public void detonatePD(int x) {
