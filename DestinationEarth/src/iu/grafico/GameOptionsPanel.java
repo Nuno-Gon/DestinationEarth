@@ -192,7 +192,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
         crewPhaseP = new JPanel();
         crewPhaseP.setLayout(new GridBagLayout());
         crewPhaseP.setOpaque(false);
-
+        //crewPhaseP = new Insets(0, -100, 0, 0);
         b_Move = new JButton("Move");
         b_Move.setFont(font);
         b_Move.setPreferredSize(d);
@@ -236,39 +236,30 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_SealRoom.setForeground(Color.ORANGE);
 
         c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        c.insets = new Insets(10, 0, 0, 0);
+        
         c.gridy = 0;
         crewPhaseP.add(b_Move, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 1;
         crewPhaseP.add(b_Attack, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 2;
         crewPhaseP.add(b_HealHealth, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 3;
         crewPhaseP.add(b_FixHull, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 4;
         crewPhaseP.add(b_SettingTrap, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 5;
         crewPhaseP.add(b_DetonatePD, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 100, 200);
+        
         c.gridy = 6;
         crewPhaseP.add(b_SealRoom, c);
+        
+
     }
 
     @Override
@@ -442,49 +433,36 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_addOneResultAttack.setForeground(Color.ORANGE);
 
         c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        c.insets = new Insets(10, 0, 0, 0);
+        
         c.gridy = 0;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_heal, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 1;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_fix, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_buildODetonator, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 3;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_addToMovement, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 4;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_buildPDesperser, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 5;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_sealToken, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 6;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_addAttackDie, c);
-
-        c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        
         c.gridy = 7;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_addOneResultAttack, c);
