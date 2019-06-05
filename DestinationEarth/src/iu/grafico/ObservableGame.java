@@ -265,4 +265,10 @@ public class ObservableGame extends Observable {
         setChanged();
         notifyObservers();
     }
+
+    void restPhase() {
+        game.rest();
+        setChanged();
+        notifyObservers();
+    }
 }

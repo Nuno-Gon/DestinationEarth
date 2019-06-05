@@ -19,7 +19,7 @@ public class AwaitCrewPhase extends StateAdapter {
     public IStates move() {
         if (gameData.getActionPoints() == 0) {
             gameData.setActionPoints(5);
-            return new AwaitAlienPhase(gameData);
+            noAP();
         }
         return new AwaitMove(gameData);
     }
@@ -79,7 +79,7 @@ public class AwaitCrewPhase extends StateAdapter {
         }
         gameData.setActionPoints(gameData.getActionPoints() - 1);
         if (gameData.getActionPoints() == 0) {
-            return new AwaitAlienPhase(gameData);
+            noAP();
         }
         return new AwaitCrewPhase(gameData);
     }
@@ -89,7 +89,7 @@ public class AwaitCrewPhase extends StateAdapter {
         gameData.getIndexShipRoomList(x).setSealed(true);
         gameData.setActionPoints(gameData.getActionPoints() - 1);
         if (gameData.getActionPoints() == 0) {
-            return new AwaitAlienPhase(gameData);
+            noAP();
         }
         return new AwaitCrewPhase(gameData);
     }
@@ -110,7 +110,7 @@ public class AwaitCrewPhase extends StateAdapter {
             gameData.getIndexShipRoomList(x).setAliens(0);
             gameData.setActionPoints(gameData.getActionPoints() - 1);
             if (gameData.getActionPoints() == 0) {
-                return new AwaitAlienPhase(gameData);
+                noAP();
             }
             return new AwaitCrewPhase(gameData);
         }

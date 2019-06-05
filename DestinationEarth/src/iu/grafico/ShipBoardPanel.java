@@ -236,7 +236,7 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     break;
                 case 2:
                     if (roomList.isSealed()) {
-                        g2d.fillRect(250, 430, 30, 30);
+                        g2d.fillRect(250, 447, 30, 30);
                     }
                     break;
                 case 3:
@@ -246,12 +246,12 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     break;
                 case 4:
                     if (roomList.isSealed()) {
-                        g2d.fillRect(230, 220, 30, 30);
+                        g2d.fillRect(330, 215, 30, 30);
                     }
                     break;
                 case 5:
                     if (roomList.isSealed()) {
-                        g2d.fillRect(170, 185, 30, 30);
+                        g2d.fillRect(175, 222, 30, 30);
                     }
                     break;
                 case 6:
@@ -276,7 +276,7 @@ public class ShipBoardPanel extends JPanel implements Observer {
                     break;
                 case 10:
                     if (roomList.isSealed()) {
-                        g2d.fillRect(170, 440, 30, 30);
+                        g2d.fillRect(180, 440, 30, 30);
                     }
                     break;
                 case 11:
@@ -339,6 +339,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(2);
                 }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(2);
+                }
             }
         });
         r3.addActionListener(new ActionListener() {
@@ -355,6 +358,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(3);
+                }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(3);
                 }
 //                        JOptionPane.showMessageDialog(null, "Escolha um quarto adjecente ao " + game.getNameCM1(), "Escolha um quarto adjecente!",
 //                                    JOptionPane.ERROR_MESSAGE);
@@ -374,6 +380,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(4);
                 }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(4);
+                }
             }
         });
         r5.addActionListener(new ActionListener() {
@@ -389,6 +398,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(5);
+                }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(5);
                 }
             }
         });
@@ -406,6 +418,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(6);
                 }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(6);
+                }
             }
         });
         r7.addActionListener(new ActionListener() {
@@ -421,6 +436,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(7);
+                }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(7);
                 }
             }
         });
@@ -438,6 +456,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(8);
                 }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(8);
+                }
             }
         });
         r9.addActionListener(new ActionListener() {
@@ -453,6 +474,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(9);
+                }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(9);
                 }
             }
         });
@@ -470,6 +494,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(10);
                 }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(10);
+                }
             }
         });
         r11.addActionListener(new ActionListener() {
@@ -486,6 +513,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(11);
                 }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(11);
+                }
             }
         });
         r12.addActionListener(new ActionListener() {
@@ -501,6 +531,9 @@ public class ShipBoardPanel extends JPanel implements Observer {
                 }
                 if (game.getState() instanceof AwaitDieRoll) {
                     game.attack(12);
+                }
+                if (game.getState() instanceof AwaitSeal) {
+                    game.sealRoom(12);
                 }
             }
         });

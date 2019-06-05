@@ -177,13 +177,13 @@ public class GameOptionsPanel extends JPanel implements Observer {
         move_cm2.setForeground(Color.ORANGE);
 
         c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 10, 200);
+        c.insets = new Insets(10, 170, 10, 200);
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
         moveP.add(move_cm1, c);
 
         c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 100, 200);
+        c.insets = new Insets(10, 170, 100, 200);
         c.gridy = 1;
         moveP.add(move_cm2, c);
     }
@@ -237,28 +237,27 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
         c = new GridBagConstraints();
         c.insets = new Insets(10, 0, 0, 0);
-        
+
         c.gridy = 0;
         crewPhaseP.add(b_Move, c);
-        
+
         c.gridy = 1;
         crewPhaseP.add(b_Attack, c);
-        
+
         c.gridy = 2;
         crewPhaseP.add(b_HealHealth, c);
-        
+
         c.gridy = 3;
         crewPhaseP.add(b_FixHull, c);
-        
+
         c.gridy = 4;
         crewPhaseP.add(b_SettingTrap, c);
-        
+
         c.gridy = 5;
         crewPhaseP.add(b_DetonatePD, c);
-        
+
         c.gridy = 6;
         crewPhaseP.add(b_SealRoom, c);
-        
 
     }
 
@@ -330,6 +329,15 @@ public class GameOptionsPanel extends JPanel implements Observer {
                 crewPhaseP.setVisible(true);
             }
         });
+        b_SealRoom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
+                crewPhaseP.setVisible(false);
+                game.getGame().sealRoom();
+                crewPhaseP.setVisible(true);
+            }
+        });
 
         b_HealHealth.addActionListener(new ActionListener() {
             @Override
@@ -343,7 +351,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
                 crewPhaseP.setVisible(true);
             }
         });
-        
+
         b_fix.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
@@ -352,6 +360,9 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
                 if (game.getCrewMemberFirst().getNum() == 3 || game.getCrewMemberSecond().getNum() == 3) {
                     game.getGame().fixHull();
+                    game.getGame().getGameData().setInspirationPoints(game.getGame().getGameData().getInspirationPoints() + 1);
+                    game.getGame().fixHull();
+                } else {
                     game.getGame().fixHull();
                 }
                 crewPhaseP.setVisible(true);
@@ -366,6 +377,9 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
                 if (game.getCrewMemberFirst().getNum() == 1 || game.getCrewMemberSecond().getNum() == 1) {
                     game.getGame().heal();
+                    game.getGame().getGameData().setInspirationPoints(game.getGame().getGameData().getInspirationPoints() + 1);
+                    game.getGame().heal();
+                } else {
                     game.getGame().heal();
                 }
                 crewPhaseP.setVisible(true);
@@ -434,35 +448,35 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
         c = new GridBagConstraints();
         c.insets = new Insets(10, 0, 0, 0);
-        
+
         c.gridy = 0;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_heal, c);
-        
+
         c.gridy = 1;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_fix, c);
-        
+
         c.gridy = 2;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_buildODetonator, c);
-        
+
         c.gridy = 3;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_addToMovement, c);
-        
+
         c.gridy = 4;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_buildPDesperser, c);
-        
+
         c.gridy = 5;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_sealToken, c);
-        
+
         c.gridy = 6;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_addAttackDie, c);
-        
+
         c.gridy = 7;
         c.anchor = GridBagConstraints.WEST;
         restingPhaseP.add(b_addOneResultAttack, c);

@@ -19,7 +19,6 @@ public class GamingPanel extends JPanel implements Observer {
     JPanel jtP, infoP, diceShowPanel;
     JLabel x, infoL, diceValue;
     private GridBagConstraints c;
-  
 
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     GamingPanel(ObservableGame g) {
@@ -65,7 +64,7 @@ public class GamingPanel extends JPanel implements Observer {
         gameOptionsP = new GameOptionsPanel(game);
         //gameOptionsP = new Insets(0, -100, 0, 0);
         gameOptionsP.setOpaque(false);
-        
+
         diceShowPanel = new JPanel();
         diceShowPanel.setLayout(new GridBagLayout());
         diceValue = new JLabel();
@@ -74,13 +73,9 @@ public class GamingPanel extends JPanel implements Observer {
         diceShowPanel.setOpaque(false);
         c = new GridBagConstraints();
         c.insets = new Insets(0, 0, 0, 100);
-        
+
         diceShowPanel.add(diceValue, c);
-       
-        
-        
-        
-        
+
     }
 
     private void setupLayout() {
@@ -95,7 +90,7 @@ public class GamingPanel extends JPanel implements Observer {
 
         //CENTER Game Options Panel
         add(gameOptionsP, BorderLayout.CENTER);
-        add(diceShowPanel,BorderLayout.EAST);
+        add(diceShowPanel, BorderLayout.EAST);
     }
 
     @Override
@@ -103,7 +98,7 @@ public class GamingPanel extends JPanel implements Observer {
         super.paintComponent(g);
 
         diceValue.setText(Integer.toString(game.getGame().getGameData().getCurrentDice()));
-        
+
         try {
             Component a = jtP.getComponent(jtTurn + 1);
             a.setForeground(Color.red);
@@ -130,9 +125,14 @@ public class GamingPanel extends JPanel implements Observer {
             infoL.setText("Click the Room to where The " + game.getNameMoving() + " is moving!");
         } else if (game.getState() instanceof AwaitDieRoll) {
             infoL.setText("Attacking..........");
+        } else if (game.getState() instanceof AwaitSeal) {
+            infoL.setText("Click a Room to Seal!");
         } else if (game.getState() instanceof AwaitRestPhase) {
             infoL.setText("Resting Phase: Use your Inspiration Points for Upgrades!");
         } else if (game.getState() instanceof GameOver) {
+            infoL.setText("!!!!!!!!!!!!!!!!!!!!!!!!!!GAME OVER!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        } else if (game.getState() instanceof Victory) {
+            infoL.setText("!!!!!!!!!!!!!!!!!!!!!!!!!!VICTORY!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //            if (game.getGame().getGameData().getHealthTracker() == 0) {
 //                JOptionPane.showMessageDialog(null,
 //                        "You lost all HEALTH!", "GAME OVER!",
@@ -142,9 +142,6 @@ public class GamingPanel extends JPanel implements Observer {
 //                        "You lost the HULL!", "GAME OVER!",
 //                        JOptionPane.ERROR_MESSAGE);
 //            }
-        } else {
-            System.out.println(game.getState());
-            infoL.setText("Continue...");
         }
 
     }

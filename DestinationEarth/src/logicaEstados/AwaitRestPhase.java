@@ -10,6 +10,9 @@ public class AwaitRestPhase extends StateAdapter {
 
     @Override
     public IStates rest() {
+        if (gameData.getInspirationPoints() == 0) {
+            return new AwaitAlienSpawn(gameData);
+        }
         return this;
     }
 
@@ -34,13 +37,21 @@ public class AwaitRestPhase extends StateAdapter {
     public IStates heal() {
         gameData.setInspirationPoints(gameData.getInspirationPoints() - 1);
         gameData.setHealthTracker(gameData.getHealthTracker() + 1);
+        if (gameData.getInspirationPoints() == 0) {
+            gameData.setTurn(gameData.getTurn() + 1);
+            return new AwaitAlienSpawn(gameData);
+        }
         return this;
     }
-    
+
     @Override
     public IStates healSpecial() {
         gameData.setInspirationPoints(gameData.getInspirationPoints() - 1);
         gameData.setHealthTracker(gameData.getHealthTracker() + 2);
+        if (gameData.getInspirationPoints() == 0) {
+            gameData.setTurn(gameData.getTurn() + 1);
+            return new AwaitAlienSpawn(gameData);
+        }
         return this;
     }
 
@@ -48,6 +59,10 @@ public class AwaitRestPhase extends StateAdapter {
     public IStates fixHull() {
         gameData.setInspirationPoints(gameData.getInspirationPoints() - 1);
         gameData.setHullTracker(gameData.getHullTracker() + 1);
+        if (gameData.getInspirationPoints() == 0) {
+            gameData.setTurn(gameData.getTurn() + 1);
+            return new AwaitAlienSpawn(gameData);
+        }
         return this;
     }
 
