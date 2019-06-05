@@ -206,11 +206,13 @@ public class ObservableGame extends Observable {
 
         List<Room> roomList = game.getGameData().getShipRoomList();
         Room r = roomList.get(x);
-        
-        if(getMove_cm() == 1 && game.getGameData().getCrewMemberFirst() instanceof CM_TransporterChief){
-            moveCMRoom(r, 1);System.out.println("1");
-        }else if(getMove_cm() == 2 &&game.getGameData().getCrewMemberSecond()instanceof CM_TransporterChief){
-            moveCMRoom(r, 2);System.out.println("2");
+
+        if (getMove_cm() == 1 && game.getGameData().getCrewMemberFirst() instanceof CM_TransporterChief) {
+            moveCMRoom(r, 1);
+            System.out.println("1");
+        } else if (getMove_cm() == 2 && game.getGameData().getCrewMemberSecond() instanceof CM_TransporterChief) {
+            moveCMRoom(r, 2);
+            System.out.println("2");
         } else {
             r.getExits().keySet().forEach((Integer i) -> {
                 if (getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
@@ -220,7 +222,7 @@ public class ObservableGame extends Observable {
                 }
             });
         }
-        
+
     }
 
     void attack(int i) {
@@ -233,6 +235,7 @@ public class ObservableGame extends Observable {
 
         if (cr1 instanceof CM_ScienceOfficer || cr2 instanceof CM_ScienceOfficer) {
             r.getExits().keySet().forEach((Integer j) -> {
+
                 if (cr1 instanceof CM_ScienceOfficer && cr1.getCurrentRoom() == r.getExits().get(j)) {
                     game.attackAlien(cr1, i);
                 }
