@@ -375,6 +375,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
                 if (game.getCrewMemberFirst().getNum() == 1 || game.getCrewMemberSecond().getNum() == 1) {
                     game.getGame().heal();
+                    game.getGame().heal();
                 }
                 crewPhaseP.setVisible(true);
             }
@@ -388,24 +389,28 @@ public class GameOptionsPanel extends JPanel implements Observer {
         restingPhaseP.setAlignmentX(Component.LEFT_ALIGNMENT);
         restingPhaseP.setOpaque(false);
 
+        //done
         b_heal = new JButton("[1] Add one to Health (Double if Doctor)");
         b_heal.setFont(font);
         b_heal.setPreferredSize(d);
         b_heal.setContentAreaFilled(false);
         b_heal.setForeground(Color.ORANGE);
 
+        //done
         b_fix = new JButton("[1] Repair one Hull (Double if Engineer)");
         b_fix.setFont(font);
         b_fix.setPreferredSize(d);
         b_fix.setContentAreaFilled(false);
         b_fix.setForeground(Color.ORANGE);
 
+        //TODO
         b_buildODetonator = new JButton("[1] Build one Organic Detonator");
         b_buildODetonator.setFont(font);
         b_buildODetonator.setPreferredSize(d);
         b_buildODetonator.setContentAreaFilled(false);
         b_buildODetonator.setForeground(Color.ORANGE);
 
+        //
         b_addToMovement = new JButton("[2] Add one to Movement");
         b_addToMovement.setFont(font);
         b_addToMovement.setPreferredSize(d);
