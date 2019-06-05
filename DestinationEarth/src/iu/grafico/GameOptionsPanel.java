@@ -352,6 +352,33 @@ public class GameOptionsPanel extends JPanel implements Observer {
                 crewPhaseP.setVisible(true);
             }
         });
+        
+        b_fix.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
+                crewPhaseP.setVisible(false);
+
+                if (game.getCrewMemberFirst().getNum() == 3 || game.getCrewMemberSecond().getNum() == 3) {
+                    game.getGame().fixHull();
+                    game.getGame().fixHull();
+                }
+                crewPhaseP.setVisible(true);
+            }
+        });
+
+        b_heal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                remove(crewPhaseP);
+                crewPhaseP.setVisible(false);
+
+                if (game.getCrewMemberFirst().getNum() == 1 || game.getCrewMemberSecond().getNum() == 1) {
+                    game.getGame().heal();
+                }
+                crewPhaseP.setVisible(true);
+            }
+        });
     }
 
     private void setupCenterRestPhase() {
