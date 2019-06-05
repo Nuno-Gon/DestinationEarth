@@ -16,9 +16,10 @@ public class GamingPanel extends JPanel implements Observer {
     String[] jt;
     int jtTurn;
 
-    JPanel jtP, infoP;
-    JLabel x, infoL;
-    private Component diceShow;
+    JPanel jtP, infoP, diceShowPanel;
+    JLabel x, infoL, diceValue;
+    private GridBagConstraints c;
+  
 
     @SuppressWarnings({"LeakingThisInConstructor", "OverridableMethodCallInConstructor"})
     GamingPanel(ObservableGame g) {
@@ -62,7 +63,23 @@ public class GamingPanel extends JPanel implements Observer {
 
         //CENTER PANEL
         gameOptionsP = new GameOptionsPanel(game);
+        //gameOptionsP = new Insets(0, -100, 0, 0);
         gameOptionsP.setOpaque(false);
+        
+        diceShowPanel = new JPanel();
+        diceShowPanel.setLayout(new GridBagLayout());
+        diceValue = new JLabel();
+        diceValue.setFont(new Font("Arial Black", Font.PLAIN, 50));
+        diceValue.setForeground(Color.YELLOW);
+        diceShowPanel.setOpaque(false);
+        c = new GridBagConstraints();
+        c.insets = new Insets(0, 0, 0, 100);
+        
+        diceShowPanel.add(diceValue, c);
+       
+        
+        
+        
         
     }
 
@@ -78,13 +95,15 @@ public class GamingPanel extends JPanel implements Observer {
 
         //CENTER Game Options Panel
         add(gameOptionsP, BorderLayout.CENTER);
-        add(diceShow,BorderLayout.EAST);
+        add(diceShowPanel,BorderLayout.EAST);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        diceValue.setText(Integer.toString(game.getGame().getGameData().getCurrentDice()));
+        
         try {
             Component a = jtP.getComponent(jtTurn + 1);
             a.setForeground(Color.red);
