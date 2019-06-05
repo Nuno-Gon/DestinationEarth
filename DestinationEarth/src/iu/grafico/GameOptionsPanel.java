@@ -8,6 +8,7 @@ import javax.swing.*;
 import logicaEstados.*;
 import javax.imageio.*;
 import javax.swing.border.*;
+import logicaJogo.crewMembers.CM_ScienceOfficer;
 
 public class GameOptionsPanel extends JPanel implements Observer {
 
@@ -313,6 +314,11 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_Attack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
+                if (game.getCrewMemberFirst() instanceof CM_ScienceOfficer || game.getCrewMemberSecond() instanceof CM_ScienceOfficer) {
+                    remove(crewPhaseP);
+                    crewPhaseP.setVisible(false);
+                    game.getGame().attack();
+                }
                 if (game.getCM1_CurrentRoom().getAliens() != 0 || game.getCM2_CurrentRoom().getAliens() != 0) {
                     remove(crewPhaseP);
                     crewPhaseP.setVisible(false);
