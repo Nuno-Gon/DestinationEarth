@@ -14,11 +14,12 @@ public class GameOptionsPanel extends JPanel implements Observer {
     private final ObservableGame game;
     private int healthTracker, hullTracker, ipTracker;
     private JProgressBar healthBar, hullBar;
-    private JPanel statsP, crewPhaseP, moveP;
+    private JPanel statsP, crewPhaseP, moveP, restingPhaseP;
     private JLabel healthLabel, hullLabel, ipLabel, ipLTracker;
     private GridBagConstraints c;
     private JButton b_Move, b_Attack, b_HealHealth, b_FixHull, b_SettingTrap, b_DetonatePD, b_SealRoom, move_cm1, move_cm2;
-    private final Dimension d = new Dimension(300, 30);
+    private JButton b_heal, b_buildODetonator, b_addToMovement, b_buildPDesperser, b_sealToken, b_addAttackDie, b_addOneResultAttack, b_fix;
+    private Dimension d = new Dimension(300, 30);
     private final Font font = new Font("Arial black", Font.PLAIN, 14);
     boolean moved = false;
 
@@ -48,15 +49,11 @@ public class GameOptionsPanel extends JPanel implements Observer {
             if (moved == true) {
                 crewPhaseP.setVisible(true);
             }
-//            add(moveP, BorderLayout.SOUTH);
-//            moveP.setVisible(false);
-
             add(crewPhaseP, BorderLayout.CENTER);
-//            remove(moveP);
-
-        } else if (game.getState() instanceof AwaitMove) {
-//            remove(crewPhaseP);
-//            remove(moveP);
+            remove(restingPhaseP);
+        } else if (game.getState() instanceof AwaitRestPhase) {
+            remove(crewPhaseP);
+            add(restingPhaseP, BorderLayout.CENTER);
         } else {
         }
     }
@@ -75,6 +72,7 @@ public class GameOptionsPanel extends JPanel implements Observer {
 
         //CrewPhase CENTER.CENTER
         setupCenterCrewPhase();
+        setupCenterRestPhase();
 
         //Move CENTER.CENTER
         setupCenterMove();
@@ -313,9 +311,11 @@ public class GameOptionsPanel extends JPanel implements Observer {
         b_Attack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                remove(crewPhaseP);
-                crewPhaseP.setVisible(false);
-                game.getGame().attack();
+                if (game.getCM1_CurrentRoom().getAliens() != 0 || game.getCM2_CurrentRoom().getAliens() != 0) {
+                    remove(crewPhaseP);
+                    crewPhaseP.setVisible(false);
+                    game.getGame().attack();
+                }
             }
         });
 
@@ -344,6 +344,110 @@ public class GameOptionsPanel extends JPanel implements Observer {
                 crewPhaseP.setVisible(true);
             }
         });
+    }
+
+    private void setupCenterRestPhase() {
+        d = new Dimension(500, 30);
+        restingPhaseP = new JPanel();
+        restingPhaseP.setLayout(new GridBagLayout());
+        restingPhaseP.setAlignmentX(Component.LEFT_ALIGNMENT);
+        restingPhaseP.setOpaque(false);
+
+        b_heal = new JButton("[1] Add one to Health (Double if Doctor)");
+        b_heal.setFont(font);
+        b_heal.setPreferredSize(d);
+        b_heal.setContentAreaFilled(false);
+        b_heal.setForeground(Color.ORANGE);
+
+        b_fix = new JButton("[1] Repair one Hull (Double if Engineer)");
+        b_fix.setFont(font);
+        b_fix.setPreferredSize(d);
+        b_fix.setContentAreaFilled(false);
+        b_fix.setForeground(Color.ORANGE);
+
+        b_buildODetonator = new JButton("[1] Build one Organic Detonator");
+        b_buildODetonator.setFont(font);
+        b_buildODetonator.setPreferredSize(d);
+        b_buildODetonator.setContentAreaFilled(false);
+        b_buildODetonator.setForeground(Color.ORANGE);
+
+        b_addToMovement = new JButton("[2] Add one to Movement");
+        b_addToMovement.setFont(font);
+        b_addToMovement.setPreferredSize(d);
+        b_addToMovement.setContentAreaFilled(false);
+        b_addToMovement.setForeground(Color.ORANGE);
+
+        b_buildPDesperser = new JButton("[4] Build one Particle Desperser");
+        b_buildPDesperser.setFont(font);
+        b_buildPDesperser.setPreferredSize(d);
+        b_buildPDesperser.setContentAreaFilled(false);
+        b_buildPDesperser.setForeground(Color.ORANGE);
+
+        b_sealToken = new JButton("[5] Gain one Sealed Room Token");
+        b_sealToken.setFont(font);
+        b_sealToken.setPreferredSize(d);
+        b_sealToken.setContentAreaFilled(false);
+        b_sealToken.setForeground(Color.ORANGE);
+
+        b_addAttackDie = new JButton("[5] Gain one extra Attack Die");
+        b_addAttackDie.setFont(font);
+        b_addAttackDie.setPreferredSize(d);
+        b_addAttackDie.setContentAreaFilled(false);
+        b_addAttackDie.setForeground(Color.ORANGE);
+
+        b_addOneResultAttack = new JButton("[6] Add 1 to the result of an Attack Dice");
+        b_addOneResultAttack.setFont(font);
+        b_addOneResultAttack.setPreferredSize(d);
+        b_addOneResultAttack.setContentAreaFilled(false);
+        b_addOneResultAttack.setForeground(Color.ORANGE);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_heal, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 1;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_fix, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 2;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_buildODetonator, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 3;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_addToMovement, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 4;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_buildPDesperser, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 5;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_sealToken, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 6;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_addAttackDie, c);
+
+        c = new GridBagConstraints();
+        c.insets = new Insets(10, 0, 10, 200);
+        c.gridy = 7;
+        c.anchor = GridBagConstraints.WEST;
+        restingPhaseP.add(b_addOneResultAttack, c);
     }
 
 }
