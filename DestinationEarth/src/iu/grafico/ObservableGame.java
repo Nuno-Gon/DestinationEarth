@@ -5,6 +5,7 @@ import javax.swing.*;
 import logicaJogo.*;
 import logicaEstados.*;
 import logicaJogo.crewMembers.CM_ScienceOfficer;
+import logicaJogo.crewMembers.CM_TransporterChief;
 import logicaJogo.crewMembers.CrewMember;
 
 public class ObservableGame extends Observable {
@@ -205,13 +206,21 @@ public class ObservableGame extends Observable {
 
         List<Room> roomList = game.getGameData().getShipRoomList();
         Room r = roomList.get(x);
-        r.getExits().keySet().forEach((Integer i) -> {
-            if (getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
-                moveCMRoom(r, 1);
-            } else if (getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
-                moveCMRoom(r, 2);
-            }
-        });
+        
+        if(getMove_cm() == 1 && game.getGameData().getCrewMemberFirst() instanceof CM_TransporterChief){
+            moveCMRoom(r, 1);System.out.println("1");
+        }else if(getMove_cm() == 2 &&game.getGameData().getCrewMemberSecond()instanceof CM_TransporterChief){
+            moveCMRoom(r, 2);System.out.println("2");
+        } else {
+            r.getExits().keySet().forEach((Integer i) -> {
+                if (getMove_cm() == 1 && cr1 == r.getExits().get(i)) {
+                    moveCMRoom(r, 1);
+                } else if (getMove_cm() == 2 && cr2 == r.getExits().get(i)) {
+                    moveCMRoom(r, 2);
+                }
+            });
+        }
+        
     }
 
     void attack(int i) {
