@@ -141,6 +141,7 @@ public class ObservableGame extends Observable {
 
     public void moveCM(int i) {
         setMove_cm(i);
+
         game.move();
         setChanged();
         notifyObservers();
@@ -200,6 +201,7 @@ public class ObservableGame extends Observable {
         Room cr1, cr2;
         cr1 = getCM1_CurrentRoom();
         cr2 = getCM2_CurrentRoom();
+
         List<Room> roomList = game.getGameData().getShipRoomList();
         Room r = roomList.get(x);
         r.getExits().keySet().forEach((Integer i) -> {
